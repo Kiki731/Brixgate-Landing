@@ -15,7 +15,7 @@ export default function Hero() {
         />
       </div>
 
-      <div className="relative z-10 max-w-[1280px] mx-auto px-6 py-14 lg:py-20 flex flex-col lg:flex-row items-center gap-10 lg:gap-4 lg:min-h-[600px]">
+      <div className="relative z-10 max-w-[1280px] mx-auto px-6 py-14 lg:py-20 flex flex-col lg:flex-row items-center gap-10 lg:gap-4 lg:min-h-[600px] [@media(min-width:1550px)]:overflow-visible">
         {/* ── Left Column ─────────────────────────────────────────── */}
         <div className="flex-1 max-w-[600px]">
           {/* Badge pill */}
@@ -29,7 +29,7 @@ export default function Hero() {
           </div>
 
           {/* Main heading */}
-          <h1 className="font-[family-name:var(--font-dm-sans)] font-medium text-[42px] lg:text-[64px] leading-none text-[#101010] mb-6 anim-fade-up delay-200">
+          <h1 className="font-[family-name:var(--font-dm-sans)] font-medium text-[42px] lg:text-[54px] leading-none text-[#101010] mb-6 anim-fade-up delay-200">
             Don&apos;t Just Watch AI Change Your Field. Lead It.
           </h1>
 
@@ -76,10 +76,22 @@ export default function Hero() {
           </div>
         </div>
 
+        {/* ── Right Column: 1440px+ only, inside container ── */}
+        <div className="hidden [@media(min-width:1550px)]:flex flex-1 items-end justify-center anim-slide-right delay-300">
+          <Image
+            src="/images/Responsive-hero.png"
+            alt="Applied Artificial Intelligence — Cohort 1.2"
+            width={880}
+            height={758}
+            className="object-contain"
+            priority
+          />
+        </div>
+
       </div>
 
-      {/* Desktop only: pinned to right edge of the section */}
-      <div className="hidden lg:block absolute right-0 bottom-0 z-10 anim-slide-right delay-300">
+      {/* Below 1440px: pinned to right edge of screen */}
+      <div className="hidden lg:block [@media(min-width:1550px)]:hidden absolute right-0 bottom-[60px] z-10 anim-slide-right delay-300">
         <Image
           src="/images/hero-right-panel4.png"
           alt="Applied Artificial Intelligence — Cohort 1.2"

@@ -163,7 +163,7 @@ export default function ProgramsSection() {
                   Build a strong foundation in AI, data, and machine learning.
                 </p>
                 <button onClick={scrollToForm} className="inline-flex items-center gap-2 bg-[#d51420] hover:bg-[#b8111e] transition-colors text-white font-medium text-[14px] px-5 py-3 rounded-xl w-fit">
-                  Explore Program
+                  Join Waitlist
                   <ArrowRight className="w-4 h-4" />
                 </button>
               </div>
@@ -222,7 +222,7 @@ export default function ProgramsSection() {
                   the AI-driven economy.
                 </p>
                 <button onClick={scrollToForm} className="inline-flex items-center gap-2 bg-[#d51420] hover:bg-[#b8111e] transition-colors text-white font-medium text-[14px] px-5 py-3 rounded-xl w-fit">
-                  Explore Program
+                  Join Waitlist
                   <ArrowRight className="w-4 h-4" />
                 </button>
               </div>

@@ -7,11 +7,24 @@ import { scrollToForm } from "@/lib/scrollToForm";
 const courses = [
   {
     track: "AI for Professionals",
+    title: "General AI",
+    sessions: "42 sessions",
+    rating: "4.9",
+    lessons: "25 Lessons",
+    students: "1000",
+    priceFree: "₦89,999",
+    priceSale: "₦50,000",
+    priceUSD: "$64.94",
+    priceSaleUSD: "$36.08",
+    image: "/images/Rectangle 122.png",
+  },
+  {
+    track: "AI for Professionals",
     title: "AI in Cyber Security & Intelligence",
     sessions: "142 sessions",
     rating: "4.9",
     lessons: "25 Lessons",
-    students: "1,200 Students",
+    students: "1000",
     priceFree: "₦89,999",
     priceSale: "₦50,000",
     priceUSD: "$64.94",
@@ -24,7 +37,7 @@ const courses = [
     sessions: "142 sessions",
     rating: "4.9",
     duration: "2 Weeks",
-    students: "1,200 Students",
+    students: "1000",
     priceFree: "₦89,999",
     priceSale: "₦50,000",
     priceUSD: "$64.94",
@@ -37,7 +50,7 @@ const courses = [
     sessions: "142 sessions",
     rating: "4.9",
     duration: "2 Weeks",
-    students: "1,200 Students",
+    students: "1000",
     priceFree: "₦89,999",
     priceSale: "₦50,000",
     priceUSD: "$64.94",
@@ -50,7 +63,7 @@ const courses = [
     sessions: "142 sessions",
     rating: "4.9",
     duration: "2 Weeks",
-    students: "1,200 Students",
+    students: "1000",
     priceFree: "₦89,999",
     priceSale: "₦50,000",
     priceUSD: "$64.94",
@@ -65,10 +78,10 @@ function CourseCard({ course }: { course: (typeof courses)[0] }) {
       {/* Thumbnail */}
       <div className="relative h-[151px]">
         <Image src={course.image} alt={course.title} fill className="object-cover" />
-        <span className="absolute top-2.5 left-2.5 bg-[#ff2949] text-white text-[10px] font-semibold px-2 py-0.5 rounded flex items-center gap-1 z-10">
+        {/* <span className="absolute top-2.5 left-2.5 bg-[#ff2949] text-white text-[10px] font-semibold px-2 py-0.5 rounded flex items-center gap-1 z-10">
           <span className="w-1.5 h-1.5 rounded-full bg-[#1ed515]" />
           Live
-        </span>
+        </span> */}
       </div>
 
       {/* Content */}
@@ -108,7 +121,7 @@ function CourseCard({ course }: { course: (typeof courses)[0] }) {
           <span className="text-gray-300">|</span>
           <span className="flex items-center gap-1">
             <Users className="w-3 h-3" />
-            {course.students}
+            {course.students} Students Capacity
           </span>
         </div>
 
@@ -127,7 +140,7 @@ function CourseCard({ course }: { course: (typeof courses)[0] }) {
 export default function CoursesSection() {
   const ref = useInView();
   return (
-    <section className="py-16 bg-white"><div ref={ref}>
+    <section id="courses-section" className="py-16 bg-white"><div ref={ref}>
       <div className="max-w-[1280px] mx-auto px-6">
         {/* Header */}
         <div className="flex flex-col items-center text-center mb-8 scroll-anim">
@@ -142,13 +155,10 @@ export default function CoursesSection() {
         {/* Sub header row */}
         <div className="flex items-center justify-between mb-6">
           <span className="text-[#4749c1] font-semibold text-xl">New courses</span>
-          <button onClick={scrollToForm} className="text-sm text-[#111] flex items-center gap-1 hover:text-[#4749c1] transition-colors">
-            SEE ALL <ChevronRight className="w-4 h-4" />
-          </button>
         </div>
 
-        {/* Course Cards — horizontal scroll on mobile, grid on desktop */}
-        <div className="flex gap-5 overflow-x-auto pb-4 scrollbar-hide lg:grid lg:grid-cols-4 lg:overflow-visible">
+        {/* Course Cards — always horizontal scroll */}
+        <div className="flex gap-5 overflow-x-auto pb-4 scrollbar-hide">
           {courses.map((c) => (
             <CourseCard key={c.title} course={c} />
           ))}

@@ -28,7 +28,8 @@
       "Bash(curl -s \"https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/89ae533f-0ddb-47ae-94ab-f3b19743d42a\" -o /Users/abassokikioluwa/Desktop/brixer-land/public/images/testimonial-avatar-3.png)",
       "Bash(ls -lh /Users/abassokikioluwa/Desktop/brixer-land/public/images/testimonial-avatar-*.png)",
       "Bash(file /Users/abassokikioluwa/Desktop/brixer-land/public/images/testimonial-avatar-*.png)",
-      "Bash(npm run:*)"
+      "Bash(npm run:*)",
+      "Bash(git add:*)"
     ]
   }
 }

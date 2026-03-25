@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { ChevronDown, ArrowRight, Menu, X } from "lucide-react";
 import Image from "next/image";
-import { scrollToForm } from "@/lib/scrollToForm";
+import { scrollToForm, scrollToSection } from "@/lib/scrollToForm";
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -49,8 +49,8 @@ export default function Navbar() {
             Home
           </a>
           <a
-            href="#"
-            onClick={(e) => { e.preventDefault(); scrollToForm(); }}
+            href="#courses-section"
+            onClick={(e) => { e.preventDefault(); scrollToSection("courses-section"); }}
             className="px-3 py-2 text-sm font-semibold hover:text-white/80 transition-colors"
           >
             Our Courses
@@ -90,18 +90,20 @@ export default function Navbar() {
       {/* Mobile Menu */}
       {mobileOpen && (
         <div className="md:hidden bg-[#172435] border-t border-white/10 px-6 py-4 flex flex-col gap-3">
-          {["Home", "Our Courses"].map(
-            (item) => (
-              <a
-                key={item}
-                href="#"
-                onClick={(e) => { e.preventDefault(); scrollToForm(); setMobileOpen(false); }}
-                className="text-sm font-medium py-2 border-b border-white/10 last:border-0"
-              >
-                {item}
-              </a>
-            )
-          )}
+          <a
+            href="#"
+            onClick={(e) => { e.preventDefault(); scrollToForm(); setMobileOpen(false); }}
+            className="text-sm font-medium py-2 border-b border-white/10"
+          >
+            Home
+          </a>
+          <a
+            href="#courses-section"
+            onClick={(e) => { e.preventDefault(); scrollToSection("courses-section"); setMobileOpen(false); }}
+            className="text-sm font-medium py-2 border-b border-white/10 last:border-0"
+          >
+            Our Courses
+          </a>
           <div className="flex gap-3 pt-2">
             {/* <a href="#" className="text-sm font-medium">
               Sign in

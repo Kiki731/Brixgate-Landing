@@ -94,10 +94,10 @@ export default function Testimonials() {
               </div>
 
               {/* Quote */}
-              <p className="text-[#6b7280] text-[14px] lg:text-base leading-relaxed">{t.quote}</p>
+              <p className="text-[#6b7280] text-[14px] lg:text-base pb-8 leading-relaxed">{t.quote}</p>
 
               {/* Stats row */}
-              <div className="flex items-center gap-2 text-sm border-t border-gray-100 pt-4">
+              {/* <div className="flex items-center gap-2 text-sm border-t border-gray-100 pt-4">
                 <span className="flex items-center gap-1">
                   <StarIcon />
                   <span className="text-[#f59e0b] font-semibold">{t.rating}</span>
@@ -106,7 +106,7 @@ export default function Testimonials() {
                 <span className="text-[#9ca3af] text-xs">{t.alumni}</span>
                 <span className="text-gray-300 text-base">·</span>
                 <span className="text-[#9ca3af] text-xs">{t.placed}</span>
-              </div>
+              </div> */}
             </div>
           ))}
         </div>
