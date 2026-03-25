@@ -1,0 +1,126 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #0f172a;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-navy: #0f172a;
+  --color-nav-dark: #172435;
+  --color-red-primary: #d51420;
+  --color-red-accent: #ff2949;
+  --color-purple-bar: #511c84;
+  --color-purple-stats: #a855f7;
+  --color-footer: #222222;
+  --color-muted: #727272;
+  --color-secondary-text: #475569;
+  --color-amber: #f59e0b;
+  --color-live-green: #1ed515;
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-dm-sans);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+/* ── Animation keyframes ───────────────────────────────────── */
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-32px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(32px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* ── Utility animation classes ─────────────────────────────── */
+.anim-fade-up {
+  opacity: 0;
+  animation: fadeSlideUp 0.6s ease forwards;
+}
+.anim-fade-in {
+  opacity: 0;
+  animation: fadeIn 0.6s ease forwards;
+}
+.anim-slide-left {
+  opacity: 0;
+  animation: slideInLeft 0.6s ease forwards;
+}
+.anim-slide-right {
+  opacity: 0;
+  animation: slideInRight 0.6s ease forwards;
+}
+
+/* Stagger delays */
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+.delay-600 { animation-delay: 0.6s; }
+
+/* Scroll-triggered: elements start hidden, JS adds .in-view */
+.scroll-anim {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.scroll-anim.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+.scroll-anim-left {
+  opacity: 0;
+  transform: translateX(-32px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.scroll-anim-left.in-view {
+  opacity: 1;
+  transform: translateX(0);
+}
+.scroll-anim-right {
+  opacity: 0;
+  transform: translateX(32px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.scroll-anim-right.in-view {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Hover lift for cards */
+.hover-lift {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.10);
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .anim-fade-up, .anim-fade-in, .anim-slide-left, .anim-slide-right,
+  .scroll-anim, .scroll-anim-left, .scroll-anim-right {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 -m json.tool)",
+      "Bash(curl -s -H \"X-Figma-Token: figd_Vxnv5ekHte5DPcwkA77Nk46v1X7IX-8fHnO-ZkJO\" \"https://api.figma.com/v1/files/7Sa7vvbjY5W8tu2aBINIBF/nodes?ids=448-581&depth=5\")",
+      "Bash(curl -s -H \"X-Figma-Token: figd_Vxnv5ekHte5DPcwkA77Nk46v1X7IX-8fHnO-ZkJO\" \"https://api.figma.com/v1/files/7Sa7vvbjY5W8tu2aBINIBF\")",
+      "Bash(python3 -c \":*)",
+      "Bash(curl -s -H \"X-Figma-Token: figd_Vxnv5ekHte5DPcwkA77Nk46v1X7IX-8fHnO-ZkJO\" \"https://api.figma.com/v1/files/7Sa7vvbjY5W8tu2aBINIBF/nodes?ids=448:581&depth=5\")",
+      "Bash(curl -s -H \"X-Figma-Token: figd_Vxnv5ekHte5DPcwkA77Nk46v1X7IX-8fHnO-ZkJO\" \"https://api.figma.com/v1/files/7Sa7vvbjY5W8tu2aBINIBF/nodes?ids=448:581&depth=3\")",
+      "WebFetch(domain:api.figma.com)",
+      "Bash(curl -s \"https://api.figma.com/v1/files/7Sa7vvbjY5W8tu2aBINIBF/nodes?ids=448:937&depth=4\" -H \"X-Figma-Token: figd_Vxnv5ekHte5DPcwkA77Nk46v1X7IX-8fHnO-ZkJO\")",
+      "Bash(curl -s \"https://api.figma.com/v1/files/7Sa7vvbjY5W8tu2aBINIBF/nodes?ids=448:938,448:974,448:1062&depth=6\" -H \"X-Figma-Token: figd_Vxnv5ekHte5DPcwkA77Nk46v1X7IX-8fHnO-ZkJO\")",
+      "mcp__figma-desktop__get_design_context",
+      "Bash(identify /Users/abassokikioluwa/Desktop/brixer-land/public/images/combined-bg-boy-arrow.png)",
+      "mcp__figma-desktop__get_screenshot",
+      "Bash(curl -s -H \"X-Figma-Token: figd_Vxnv5ekHte5DPcwkA77Nk46v1X7IX-8fHnO-ZkJO\" \"https://api.figma.com/v1/files/7Sa7vvbjY5W8tu2aBINIBF/nodes?ids=448:581\")",
+      "Bash(curl -s \"https://api.figma.com/v1/files/7Sa7vvbjY5W8tu2aBINIBF/nodes?ids=448-581\" -H \"X-Figma-Token: figd_Vxnv5ekHte5DPcwkA77Nk46v1X7IX-8fHnO-ZkJO\")",
+      "Bash(curl -s \"https://api.figma.com/v1/images/7Sa7vvbjY5W8tu2aBINIBF?ids=448:786,448:787,448:788,448:789,448:790&scale=2&format=png\" -H \"X-Figma-Token: figd_Vxnv5ekHte5DPcwkA77Nk46v1X7IX-8fHnO-ZkJO\")",
+      "Bash(curl -s \"https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/bea15437-bfc8-4ed7-ad70-08edd1c591b6\" -o hero-avatar-1.png)",
+      "Bash(curl -s \"https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/e404f400-d429-4912-bd9f-7f128c761607\" -o hero-avatar-2.png)",
+      "Bash(curl -s \"https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/48061969-920a-446f-8d33-fa9c127d763a\" -o hero-avatar-3.png)",
+      "Bash(curl -s \"https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/d08ff9a1-bb9c-41cb-8fe8-6c384da09d84\" -o hero-avatar-4.png)",
+      "Bash(curl -s \"https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/366863a9-0a7c-4814-a41a-7db573b58b8c\" -o hero-avatar-5.png)",
+      "Bash(curl -s -H \"X-Figma-Token: figd_Vxnv5ekHte5DPcwkA77Nk46v1X7IX-8fHnO-ZkJO\" \"https://api.figma.com/v1/files/7Sa7vvbjY5W8tu2aBINIBF/nodes?ids=448-581\")",
+      "Bash(ls -lh /Users/abassokikioluwa/Desktop/brixer-land/public/images/why-icon-*.png)",
+      "Bash(curl -s \"https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/83b5e234-ae0a-4afa-90bd-b9ec5e2f3f63\" -o /Users/abassokikioluwa/Desktop/brixer-land/public/images/testimonial-avatar-1.png)",
+      "Bash(curl -s \"https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/0b1d14a7-5ead-40bd-8594-b1feda6d0fc0\" -o /Users/abassokikioluwa/Desktop/brixer-land/public/images/testimonial-avatar-2.png)",
+      "Bash(curl -s \"https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/89ae533f-0ddb-47ae-94ab-f3b19743d42a\" -o /Users/abassokikioluwa/Desktop/brixer-land/public/images/testimonial-avatar-3.png)",
+      "Bash(ls -lh /Users/abassokikioluwa/Desktop/brixer-land/public/images/testimonial-avatar-*.png)",
+      "Bash(file /Users/abassokikioluwa/Desktop/brixer-land/public/images/testimonial-avatar-*.png)"
+    ]
+  }
+}
