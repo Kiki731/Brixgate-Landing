@@ -1,5 +1,7 @@
+"use client";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
+import { scrollToForm } from "@/lib/scrollToForm";
 
 export default function CTASection() {
   return (
@@ -32,7 +34,7 @@ export default function CTASection() {
             </p>
 
             <div className="flex items-center gap-4 flex-wrap">
-              <button className="flex items-center gap-2 bg-[#d51420] hover:bg-[#b8111e] transition-colors text-white font-medium text-base px-6 py-3.5 rounded-xl">
+              <button onClick={scrollToForm} className="flex items-center gap-2 bg-[#d51420] hover:bg-[#b8111e] transition-colors text-white font-medium text-base px-6 py-3.5 rounded-xl">
                 Join the Waitlist
                 <ArrowRight className="w-4 h-4" />
               </button>

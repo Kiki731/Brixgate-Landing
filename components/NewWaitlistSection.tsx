@@ -6,6 +6,13 @@ const SCRIPT_URL =
   "https://script.google.com/macros/s/AKfycbwbROYvncdflkNnYuFQ9x-LRlDH5-ViiOKtnDnvQvC0yEkIaqKiMpmy_7Zw2FbVRZ6Now/exec";
 
 const waitlistStyles = `
+  @keyframes successPop {
+    0%   { transform: scale(0.5); opacity: 0; }
+    100% { transform: scale(1);   opacity: 1; }
+  }
+  @keyframes drawCheck {
+    to { stroke-dashoffset: 0; }
+  }
   @media (max-width: 1024px) {
     .waitlist-section { min-height: unset !important; padding-top: 40px !important; }
     .waitlist-lady { display: none !important; }
@@ -51,22 +58,17 @@ export default function NewWaitlistSection() {
     e.preventDefault();
     if (!form.name || !form.email) return;
     setStatus("loading");
-    try {
-      const formData = new FormData();
-      formData.append("name", form.name);
-      formData.append("email", form.email);
-      formData.append("phone", form.phone);
-      formData.append("program", form.program);
-      await fetch(SCRIPT_URL, {
-        method: "POST",
-        mode: "no-cors",
-        body: formData,
-      });
-      setStatus("success");
-      setForm({ name: "", email: "", phone: "", program: "" });
-    } catch {
-      setStatus("error");
-    }
+    const formData = new FormData();
+    formData.append("name", form.name);
+    formData.append("email", form.email);
+    formData.append("phone", form.phone);
+    formData.append("program", form.program);
+    // Fire and forget — no-cors means we can't read the response anyway,
+    // so show success immediately instead of waiting for Google's round-trip.
+    fetch(SCRIPT_URL, { method: "POST", mode: "no-cors", body: formData }).catch(() => {});
+    setStatus("success");
+    setForm({ name: "", email: "", phone: "", program: "" });
+    setTimeout(() => setStatus("idle"), 40000);
   };
 
   return (
@@ -78,6 +80,7 @@ export default function NewWaitlistSection() {
      * where the lady's head will "pop up" through the border-radius opening.
      */}
     <section
+      id="waitlist-form"
       className="waitlist-section"
       style={{
         position: "relative",
@@ -282,99 +285,159 @@ export default function NewWaitlistSection() {
               overflow: "hidden",
             }}
           >
-            <div className="px-8 pt-6 pb-8">
-              {/* Card heading */}
-              <h3 className="font-[family-name:var(--font-dm-sans)] font-medium text-2xl text-[#222] mb-1">
-                Get Early Access
-              </h3>
-              <p className="text-[#727272] text-sm mb-6">
-                Join the waitlist to receive priority updates and be among the first to enroll in
-                our AI courses.
-              </p>
-
-              {/* Form fields */}
-              <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-                <div className="flex flex-col gap-1.5">
-                  <label className="text-sm text-[#222]">Full Name *</label>
-                  <input
-                    type="text"
-                    name="name"
-                    value={form.name}
-                    onChange={handleChange}
-                    required
-                    placeholder="Enter your full name"
-                    className="border border-gray-200 rounded-lg px-4 h-12 text-sm outline-none focus:border-[#172435] transition-colors placeholder:text-gray-300"
-                  />
-                </div>
-
-                <div className="flex flex-col gap-1.5">
-                  <label className="text-sm text-[#222]">Email Address *</label>
-                  <input
-                    type="email"
-                    name="email"
-                    value={form.email}
-                    onChange={handleChange}
-                    required
-                    placeholder="Enter your email address"
-                    className="border border-gray-200 rounded-lg px-4 h-12 text-sm outline-none focus:border-[#172435] transition-colors placeholder:text-gray-300"
-                  />
-                </div>
-
-                <div className="flex flex-col gap-1.5">
-                  <label className="text-sm text-[#222]">Phone Number</label>
-                  <input
-                    type="tel"
-                    name="phone"
-                    value={form.phone}
-                    onChange={handleChange}
-                    placeholder="Enter your phone number"
-                    className="border border-gray-200 rounded-lg px-4 h-12 text-sm outline-none focus:border-[#172435] transition-colors placeholder:text-gray-300"
-                  />
-                </div>
-
-                <div className="flex flex-col gap-1.5">
-                  <label className="text-sm text-[#222]">Program</label>
-                  <div className="relative">
-                    <select
-                      name="program"
-                      value={form.program}
-                      onChange={handleChange}
-                      className="w-full border border-gray-200 rounded-lg px-4 h-12 text-sm outline-none focus:border-[#172435] transition-colors text-gray-400 appearance-none bg-white pr-10"
-                    >
-                      <option value="" disabled>Select a program</option>
-                      <option>General AI</option>
-                      <option>AI in Data Analytic Intelligence</option>
-                      <option>AI in Cyber Security</option>
-                      <option>AI in Software Engineering</option>
-                      <option>AI in Product Management</option>
-                    </select>
-                    <svg className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                      <path d="M4 6L8 10L12 6" stroke="#737373" strokeWidth="1.33" strokeLinecap="round" strokeLinejoin="round" />
+            <div className="px-8 pt-6 pb-8" style={{ minHeight: "560px", display: "flex", flexDirection: "column", justifyContent: status === "success" ? "center" : "flex-start" }}>
+              {status === "success" ? (
+                /* ── Success State ── */
+                <div className="flex flex-col items-center justify-center text-center py-8 gap-5">
+                  {/* Animated check circle */}
+                  <div
+                    style={{
+                      width: 72,
+                      height: 72,
+                      borderRadius: "50%",
+                      background: "linear-gradient(135deg, #16a34a 0%, #22c55e 100%)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      boxShadow: "0 0 0 12px rgba(34,197,94,0.12)",
+                      animation: "successPop 0.4s cubic-bezier(0.34,1.56,0.64,1) both",
+                    }}
+                  >
+                    <svg width="34" height="34" viewBox="0 0 34 34" fill="none">
+                      <path
+                        d="M7 17L13.5 23.5L27 10"
+                        stroke="white"
+                        strokeWidth="3"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        style={{ animation: "drawCheck 0.35s 0.3s ease forwards", strokeDasharray: 30, strokeDashoffset: 30 }}
+                      />
                     </svg>
                   </div>
+
+                  {/* Heading */}
+                  <div>
+                    <h3 className="font-[family-name:var(--font-dm-sans)] font-semibold text-xl text-[#222] mb-1">
+                      You&apos;re on the waitlist!
+                    </h3>
+                    <p className="text-[#727272] text-sm leading-relaxed max-w-[260px] mx-auto">
+                      We&apos;ll be in touch soon with priority access details.
+                    </p>
+                  </div>
+
+                  {/* Divider */}
+                  <div className="w-full h-px bg-gray-100" />
+
+                  {/* Stats row */}
+                  <div className="flex items-center justify-center gap-6 w-full">
+                    <div className="flex flex-col items-center gap-0.5">
+                      <span className="text-[#222] font-semibold text-base">1,200+</span>
+                      <span className="text-[#727272] text-xs">on the waitlist</span>
+                    </div>
+                    <div className="w-px h-8 bg-gray-100" />
+                    <div className="flex flex-col items-center gap-0.5">
+                      <span className="text-[#222] font-semibold text-base">5 Programs</span>
+                      <span className="text-[#727272] text-xs">to choose from</span>
+                    </div>
+                    <div className="w-px h-8 bg-gray-100" />
+                    <div className="flex flex-col items-center gap-0.5">
+                      <span className="text-[#222] font-semibold text-base">AI-First</span>
+                      <span className="text-[#727272] text-xs">curriculum</span>
+                    </div>
+                  </div>
                 </div>
+              ) : (
+                <>
+                  {/* Card heading */}
+                  <h3 className="font-[family-name:var(--font-dm-sans)] font-medium text-2xl text-[#222] mb-1">
+                    Get Early Access
+                  </h3>
+                  <p className="text-[#727272] text-sm mb-6">
+                    Join the waitlist to receive priority updates and be among the first to enroll in
+                    our AI courses.
+                  </p>
 
-                {status === "success" && (
-                  <p className="text-green-600 text-sm font-medium text-center">You&apos;re on the waitlist! We&apos;ll be in touch soon.</p>
-                )}
-                {status === "error" && (
-                  <p className="text-red-500 text-sm text-center">Something went wrong. Please try again.</p>
-                )}
+                  {/* Form fields */}
+                  <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+                    <div className="flex flex-col gap-1.5">
+                      <label className="text-sm text-[#222]">Full Name *</label>
+                      <input
+                        type="text"
+                        name="name"
+                        value={form.name}
+                        onChange={handleChange}
+                        required
+                        placeholder="Enter your full name"
+                        className="border border-gray-200 rounded-lg px-4 h-12 text-sm outline-none focus:border-[#172435] transition-colors placeholder:text-gray-300"
+                      />
+                    </div>
 
-                <p className="text-[#727272] text-xs mt-2">
-                  Join 1,200+ future AI professionals already on the waitlist.
-                </p>
+                    <div className="flex flex-col gap-1.5">
+                      <label className="text-sm text-[#222]">Email Address *</label>
+                      <input
+                        type="email"
+                        name="email"
+                        value={form.email}
+                        onChange={handleChange}
+                        required
+                        placeholder="Enter your email address"
+                        className="border border-gray-200 rounded-lg px-4 h-12 text-sm outline-none focus:border-[#172435] transition-colors placeholder:text-gray-300"
+                      />
+                    </div>
 
-                <button
-                  type="submit"
-                  disabled={status === "loading"}
-                  className="w-full bg-[#d51420] hover:bg-[#b8111e] disabled:opacity-60 transition-colors text-white font-semibold text-base py-4 rounded-lg flex items-center justify-center gap-2"
-                >
-                  {status === "loading" ? "Submitting…" : "Join the Waitlist"}
-                  {status !== "loading" && <ArrowRight className="w-4 h-4" />}
-                </button>
-              </form>
+                    <div className="flex flex-col gap-1.5">
+                      <label className="text-sm text-[#222]">Phone Number</label>
+                      <input
+                        type="tel"
+                        name="phone"
+                        value={form.phone}
+                        onChange={handleChange}
+                        placeholder="Enter your phone number"
+                        className="border border-gray-200 rounded-lg px-4 h-12 text-sm outline-none focus:border-[#172435] transition-colors placeholder:text-gray-300"
+                      />
+                    </div>
 
+                    <div className="flex flex-col gap-1.5">
+                      <label className="text-sm text-[#222]">Program</label>
+                      <div className="relative">
+                        <select
+                          name="program"
+                          value={form.program}
+                          onChange={handleChange}
+                          className="w-full border border-gray-200 rounded-lg px-4 h-12 text-sm outline-none focus:border-[#172435] transition-colors text-gray-400 appearance-none bg-white pr-10"
+                        >
+                          <option value="" disabled>Select a program</option>
+                          <option>General AI</option>
+                          <option>AI in Data Analytic Intelligence</option>
+                          <option>AI in Cyber Security</option>
+                          <option>AI in Software Engineering</option>
+                          <option>AI in Product Management</option>
+                        </select>
+                        <svg className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                          <path d="M4 6L8 10L12 6" stroke="#737373" strokeWidth="1.33" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      </div>
+                    </div>
+
+                    {status === "error" && (
+                      <p className="text-red-500 text-sm text-center">Something went wrong. Please try again.</p>
+                    )}
+
+                    <p className="text-[#727272] text-xs mt-2">
+                      Join 1,200+ future AI professionals already on the waitlist.
+                    </p>
+
+                    <button
+                      type="submit"
+                      disabled={status === "loading"}
+                      className="w-full bg-[#d51420] hover:bg-[#b8111e] disabled:opacity-60 transition-colors text-white font-semibold text-base py-4 rounded-lg flex items-center justify-center gap-2"
+                    >
+                      {status === "loading" ? "Submitting…" : "Join the Waitlist"}
+                      {status !== "loading" && <ArrowRight className="w-4 h-4" />}
+                    </button>
+                  </form>
+                </>
+              )}
             </div>
           </div>
         </div>

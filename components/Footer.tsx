@@ -60,10 +60,17 @@ export default function Footer() {
               deliver with capability, character, and conviction.
             </p>
             <div className="flex items-center gap-3">
-              {[TwitterIcon, LinkedInIcon, InstagramIcon].map((Icon, i) => (
+              {[
+                { Icon: TwitterIcon, href: "https://x.com/BrixGate", label: "X (Twitter)" },
+                { Icon: LinkedInIcon, href: "https://www.linkedin.com/company/brixgate/", label: "LinkedIn" },
+                { Icon: InstagramIcon, href: "https://www.instagram.com/brixgate?igsh=bWFtdnE3NnpyZXAw&utm_source=qr", label: "Instagram" },
+              ].map(({ Icon, href, label }) => (
                 <a
-                  key={i}
-                  href="#"
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
                   className="w-10 h-10 rounded-full bg-white text-[#222] flex items-center justify-center hover:bg-gray-200 transition-colors"
                 >
                   <Icon />
@@ -73,7 +80,7 @@ export default function Footer() {
           </div>
 
           {/* Programs */}
-          <div>
+          {/* <div>
             <h4 className="text-white font-semibold text-sm mb-5">AI in My Field</h4>
             <ul className="flex flex-col gap-4">
               {programs.map((p) => (
@@ -84,10 +91,10 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
+          </div> */}
 
           {/* Company */}
-          <div>
+          {/* <div>
             <h4 className="text-white font-semibold text-sm mb-5">Company</h4>
             <ul className="flex flex-col gap-4">
               {company.map((c) => (
@@ -98,10 +105,10 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
+          </div> */}
 
           {/* Resources */}
-          <div>
+          {/* <div>
             <h4 className="text-white font-semibold text-sm mb-5">Resources</h4>
             <ul className="flex flex-col gap-4">
               {resources.map((r) => (
@@ -112,7 +119,7 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
+          </div> */}
         </div>
 
         {/* Bottom bar */}

@@ -1,5 +1,7 @@
+"use client";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
+import { scrollToForm } from "@/lib/scrollToForm";
 
 const industryPills = [
   { label: "Engineering",       icon: "/icons/settings-03.svg"       },
@@ -160,7 +162,7 @@ export default function ProgramsSection() {
                 >
                   Build a strong foundation in AI, data, and machine learning.
                 </p>
-                <button className="inline-flex items-center gap-2 bg-[#d51420] hover:bg-[#b8111e] transition-colors text-white font-medium text-[14px] px-5 py-3 rounded-xl w-fit">
+                <button onClick={scrollToForm} className="inline-flex items-center gap-2 bg-[#d51420] hover:bg-[#b8111e] transition-colors text-white font-medium text-[14px] px-5 py-3 rounded-xl w-fit">
                   Explore Program
                   <ArrowRight className="w-4 h-4" />
                 </button>
@@ -219,7 +221,7 @@ export default function ProgramsSection() {
                   Designed for working professionals across all industries who want to stay ahead in
                   the AI-driven economy.
                 </p>
-                <button className="inline-flex items-center gap-2 bg-[#d51420] hover:bg-[#b8111e] transition-colors text-white font-medium text-[14px] px-5 py-3 rounded-xl w-fit">
+                <button onClick={scrollToForm} className="inline-flex items-center gap-2 bg-[#d51420] hover:bg-[#b8111e] transition-colors text-white font-medium text-[14px] px-5 py-3 rounded-xl w-fit">
                   Explore Program
                   <ArrowRight className="w-4 h-4" />
                 </button>
@@ -241,6 +243,7 @@ export default function ProgramsSection() {
                 {industryPills.map((pill) => (
                   <div
                     key={pill.label}
+                    onClick={scrollToForm}
                     className="flex items-center gap-3 bg-white border border-gray-100 rounded-xl px-4 py-4 hover:shadow-sm transition-shadow cursor-pointer"
                   >
                     <img

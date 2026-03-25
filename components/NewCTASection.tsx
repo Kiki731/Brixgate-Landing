@@ -1,4 +1,5 @@
 "use client";
+import { scrollToForm } from "@/lib/scrollToForm";
 
 export default function NewCTASection() {
   return (
@@ -109,6 +110,7 @@ export default function NewCTASection() {
           {/* CTA buttons */}
           <div style={{ display: "flex", alignItems: "center", gap: "16px", flexWrap: "wrap" }}>
             <button
+              onClick={scrollToForm}
               style={{
                 display: "inline-flex",
                 alignItems: "center",

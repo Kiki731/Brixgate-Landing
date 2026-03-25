@@ -27,7 +27,8 @@
       "Bash(curl -s \"https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/0b1d14a7-5ead-40bd-8594-b1feda6d0fc0\" -o /Users/abassokikioluwa/Desktop/brixer-land/public/images/testimonial-avatar-2.png)",
       "Bash(curl -s \"https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/89ae533f-0ddb-47ae-94ab-f3b19743d42a\" -o /Users/abassokikioluwa/Desktop/brixer-land/public/images/testimonial-avatar-3.png)",
       "Bash(ls -lh /Users/abassokikioluwa/Desktop/brixer-land/public/images/testimonial-avatar-*.png)",
-      "Bash(file /Users/abassokikioluwa/Desktop/brixer-land/public/images/testimonial-avatar-*.png)"
+      "Bash(file /Users/abassokikioluwa/Desktop/brixer-land/public/images/testimonial-avatar-*.png)",
+      "Bash(npm run:*)"
     ]
   }
 }

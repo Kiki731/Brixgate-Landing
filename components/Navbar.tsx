@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { ChevronDown, ArrowRight, Menu, X } from "lucide-react";
 import Image from "next/image";
+import { scrollToForm } from "@/lib/scrollToForm";
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -42,12 +43,14 @@ export default function Navbar() {
           </a> */}
           <a
             href="#"
+            onClick={(e) => { e.preventDefault(); scrollToForm(); }}
             className="px-3 py-2 text-sm font-semibold hover:text-white/80 transition-colors"
           >
             Home
           </a>
           <a
             href="#"
+            onClick={(e) => { e.preventDefault(); scrollToForm(); }}
             className="px-3 py-2 text-sm font-semibold hover:text-white/80 transition-colors"
           >
             Our Courses
@@ -64,6 +67,7 @@ export default function Navbar() {
           </a> */}
           <a
             href="#"
+            onClick={(e) => { e.preventDefault(); scrollToForm(); }}
             className="flex items-center gap-2 bg-[#d51420] hover:bg-[#b8111e] transition-colors text-white text-sm font-semibold px-4 py-2.5 rounded-md"
           >
             Get Started
@@ -91,6 +95,7 @@ export default function Navbar() {
               <a
                 key={item}
                 href="#"
+                onClick={(e) => { e.preventDefault(); scrollToForm(); setMobileOpen(false); }}
                 className="text-sm font-medium py-2 border-b border-white/10 last:border-0"
               >
                 {item}
@@ -103,6 +108,7 @@ export default function Navbar() {
             </a> */}
             <a
               href="#"
+              onClick={(e) => { e.preventDefault(); scrollToForm(); setMobileOpen(false); }}
               className="flex items-center gap-2 bg-[#d51420] text-white text-sm font-semibold px-4 py-2 rounded-md"
             >
               Get Started

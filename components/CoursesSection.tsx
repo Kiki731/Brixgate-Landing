@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { BookOpen, Users, ArrowRight, ChevronRight } from "lucide-react";
 import { useInView } from "@/hooks/useInView";
+import { scrollToForm } from "@/lib/scrollToForm";
 
 const courses = [
   {
@@ -114,7 +115,7 @@ function CourseCard({ course }: { course: (typeof courses)[0] }) {
         {/* Footer Row */}
         <div className="flex items-center justify-between border-t border-gray-100 pt-3">
           {/* <span className="text-[#222] font-semibold text-sm">FREE</span> */}
-          <button className="bg-[#d51420] hover:bg-[#b8111e] transition-colors text-white text-sm font-medium px-3 py-1.5 rounded-md flex items-center gap-1">
+          <button onClick={scrollToForm} className="bg-[#d51420] hover:bg-[#b8111e] transition-colors text-white text-sm font-medium px-3 py-1.5 rounded-md flex items-center gap-1">
             Join the Waitlist
           </button>
         </div>
@@ -141,7 +142,7 @@ export default function CoursesSection() {
         {/* Sub header row */}
         <div className="flex items-center justify-between mb-6">
           <span className="text-[#4749c1] font-semibold text-xl">New courses</span>
-          <button className="text-sm text-[#111] flex items-center gap-1 hover:text-[#4749c1] transition-colors">
+          <button onClick={scrollToForm} className="text-sm text-[#111] flex items-center gap-1 hover:text-[#4749c1] transition-colors">
             SEE ALL <ChevronRight className="w-4 h-4" />
           </button>
         </div>
