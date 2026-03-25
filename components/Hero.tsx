@@ -21,26 +21,21 @@ export default function Hero() {
           {/* Badge pill */}
           <div className="inline-flex items-center gap-2 bg-[#f8f8f8] border border-gray-200 rounded-full px-3 py-1.5 mb-7 anim-fade-up delay-100">
             <span className="bg-[#0f172a] text-white text-[10px] font-semibold px-2.5 py-1 rounded-full flex items-center gap-1.5">
-              {/* spark icon */}
-              {/* <svg className="w-3 h-3" viewBox="0 0 12 12" fill="none">
-                <path d="M6 0L7 4H11L8 6.5L9 10.5L6 8L3 10.5L4 6.5L1 4H5L6 0Z" fill="white" />
-              </svg> */}
-              New
+              Cohort 1
             </span>
             <span className="text-[#0f172a] text-[13px] font-normal">
-              No. 1 Artificial Intelligence Infrastructure
+              Built by engineers, for engineers
             </span>
           </div>
 
           {/* Main heading */}
           <h1 className="font-[family-name:var(--font-dm-sans)] font-medium text-[42px] lg:text-[64px] leading-none text-[#101010] mb-6 anim-fade-up delay-200">
-            AI in My Field
+            Don&apos;t Just Watch AI Change Your Field. Lead It.
           </h1>
 
           {/* Subtitle */}
-          <p className="text-[#222222] text-base lg:text-lg leading-relaxed mb-10 max-w-[580px] anim-fade-up delay-300">
-            AI is reshaping modern work. Explore how it integrates into cybersecurity, software
-            engineering, product development, data intelligence, and cloud infrastructure.
+          <p className="text-[#222222] text-base lg:text-lg leading-relaxed mb-10 max-w-[520px] anim-fade-up delay-300">
+            We&apos;re engineers, PMs, designers and data professionals who embedded AI into our work before it became urgent. Now we&apos;re training the next wave. Your field is evolving fast — be the one ahead of it.
           </p>
 
           {/* Social proof */}
@@ -53,20 +48,20 @@ export default function Hero() {
               ))}
             </div>
             <span className="text-[#282828] text-sm font-[family-name:var(--font-inter)] max-w-[180px]">
-              Over <span className="text-[#FF580C]">12k+</span> professionals trained
+              Join <span className="text-[#FF580C]">500+</span> tech pros on the waitlist
             </span>
           </div>
 
           {/* Stats Pill */}
           <div className="mt-8 inline-flex items-center gap-5 bg-[#a855f7] rounded-xl px-6 py-4 anim-fade-up delay-500">
             <div className="flex flex-col items-center leading-tight">
-              <span className="text-white font-bold text-[12px] lg:text-[15px]">Over 50+</span>
-              <span className="text-white/90 text-[10px] font-[family-name:var(--font-inter)]">Instructors</span>
+              <span className="text-white font-bold text-[12px] lg:text-[15px]">5 Fields</span>
+              <span className="text-white/90 text-[10px] font-[family-name:var(--font-inter)]">Disciplines</span>
             </div>
             <div className="w-px h-[34px] bg-white/40" />
             <div className="flex flex-col items-center leading-tight">
-              <span className="text-white font-bold text-[12px] lg:text-[15px]">Over 12,000+</span>
-              <span className="text-white/90 text-[10px] font-[family-name:var(--font-inter)]">Learners</span>
+              <span className="text-white font-bold text-[12px] lg:text-[15px]">100%</span>
+              <span className="text-white/90 text-[10px] font-[family-name:var(--font-inter)]">Practical</span>
             </div>
             <div className="w-px h-[34px] bg-white/40" />
             <div className="flex flex-col items-center leading-tight">
@@ -74,9 +69,9 @@ export default function Hero() {
                 <svg className="w-3.5 h-3.5 fill-white" viewBox="0 0 14 13">
                   <path d="M7 0L8.573 4.84H13.657L9.542 7.83L11.115 12.67L7 9.68L2.885 12.67L4.458 7.83L0.343 4.84H5.427L7 0Z" />
                 </svg>
-                <span className="text-white font-bold text-[12px] lg:text-[15px]">4.9</span>
+                <span className="text-white font-bold text-[12px] lg:text-[15px]">Cohort 1</span>
               </span>
-              <span className="text-white/90 text-[10px] font-[family-name:var(--font-inter)]">Ratings</span>
+              <span className="text-white/90 text-[10px] font-[family-name:var(--font-inter)]">Now Open</span>
             </div>
           </div>
         </div>
