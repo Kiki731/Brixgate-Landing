@@ -29,7 +29,9 @@
       "Bash(ls -lh /Users/abassokikioluwa/Desktop/brixer-land/public/images/testimonial-avatar-*.png)",
       "Bash(file /Users/abassokikioluwa/Desktop/brixer-land/public/images/testimonial-avatar-*.png)",
       "Bash(npm run:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)"
     ]
   }
 }
