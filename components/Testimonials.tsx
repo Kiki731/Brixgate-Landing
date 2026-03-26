@@ -12,10 +12,10 @@ const testimonials = [
     rating: "4.9",
     alumni: "312 Alumni",
     placed: "94% Placed",
-    avatar: "/images/testimonial-avatar-1.png",
+    avatar: "/images/testimonial-avatar-5.jpg",
   },
   {
-    name: "David. O",
+    name: "David. Shoneye",
     role: "Data Analyst",
     location: "Lagos Nigeria",
     quote:
@@ -23,10 +23,10 @@ const testimonials = [
     rating: "4.9",
     alumni: "312 Alumni",
     placed: "94% Placed",
-    avatar: "/images/testimonial-avatar-2.png",
+    avatar: "/images/testimonial-avatar-4.jpg",
   },
   {
-    name: "Sadiq M.",
+    name: "Sadiq Maitama.",
     role: "Business Analyst",
     location: "Lagos Nigeria",
     quote:
@@ -34,7 +34,7 @@ const testimonials = [
     rating: "4.9",
     alumni: "312 Alumni",
     placed: "94% Placed",
-    avatar: "/images/testimonial-avatar-3.png",
+    avatar: "/images/testimonial-avatar-6.jpg",
   },
 ];
 
