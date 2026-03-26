@@ -43,7 +43,7 @@ export default function Navbar() {
           </a> */}
           <a
             href="#"
-            onClick={(e) => { e.preventDefault(); scrollToForm(); }}
+            onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}
             className="px-3 py-2 text-sm font-semibold hover:text-white/80 transition-colors"
           >
             Home
@@ -92,7 +92,7 @@ export default function Navbar() {
         <div className="md:hidden bg-[#172435] border-t border-white/10 px-6 py-4 flex flex-col gap-3">
           <a
             href="#"
-            onClick={(e) => { e.preventDefault(); scrollToForm(); setMobileOpen(false); }}
+            onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); setMobileOpen(false); }}
             className="text-sm font-medium py-2 border-b border-white/10"
           >
             Home

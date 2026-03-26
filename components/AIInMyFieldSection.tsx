@@ -51,6 +51,7 @@ export default function AIInMyFieldSection() {
                   <p className="text-[#222] text-xl leading-relaxed">
                     Work is evolving and AI is at the center of it. What used to take hours can now
                     take minutes. Let&apos;s help you apply AI to your actual work.
+                    
                   </p>
                   <div className="flex gap-3 mt-3">
                     <div className="h-2 rounded bg-gray-200 w-44" />

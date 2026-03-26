@@ -7,11 +7,11 @@ import { scrollToForm } from "@/lib/scrollToForm";
 const courses = [
   {
     track: "AI for Professionals",
-    title: "General AI",
+    title: "AI in Software Engineering",
     sessions: "42 sessions",
     rating: "4.9",
     lessons: "25 Lessons",
-    students: "1000",
+    students: "1000 Students Capacity",
     priceFree: "₦89,999",
     priceSale: "₦50,000",
     priceUSD: "$64.94",
@@ -24,7 +24,7 @@ const courses = [
     sessions: "142 sessions",
     rating: "4.9",
     lessons: "25 Lessons",
-    students: "1000",
+    students: "1,200 Students",
     priceFree: "₦89,999",
     priceSale: "₦50,000",
     priceUSD: "$64.94",
@@ -37,7 +37,7 @@ const courses = [
     sessions: "142 sessions",
     rating: "4.9",
     duration: "2 Weeks",
-    students: "1000",
+    students: "1,200 Students",
     priceFree: "₦89,999",
     priceSale: "₦50,000",
     priceUSD: "$64.94",
@@ -46,11 +46,11 @@ const courses = [
   },
   {
     track: "AI for Professionals",
-    title: "Introduction to Machine Learning",
+    title: "AI in DevOps",
     sessions: "142 sessions",
     rating: "4.9",
     duration: "2 Weeks",
-    students: "1000",
+    students: "1,200 Students",
     priceFree: "₦89,999",
     priceSale: "₦50,000",
     priceUSD: "$64.94",
@@ -63,7 +63,7 @@ const courses = [
     sessions: "142 sessions",
     rating: "4.9",
     duration: "2 Weeks",
-    students: "1000",
+    students: "1,200 Students",
     priceFree: "₦89,999",
     priceSale: "₦50,000",
     priceUSD: "$64.94",
@@ -93,14 +93,14 @@ function CourseCard({ course }: { course: (typeof courses)[0] }) {
         <h3 className="text-[#0f172a] font-semibold text-lg leading-snug mb-2 w-[224px]">{course.title}</h3>
 
         <div className="flex items-center gap-2 mb-3">
-          <span className="flex items-center gap-1">
+          {/* <span className="flex items-center gap-1">
             <svg className="w-3 h-3 fill-[#f59e0b]" viewBox="0 0 12 12">
               <path d="M6 0L7.34 4.11H11.66L8.16 6.65L9.51 10.76L6 8.22L2.49 10.76L3.84 6.65L0.34 4.11H4.66L6 0Z" />
             </svg>
             <span className="text-[#f59e0b] font-semibold text-xs">{course.rating}</span>
           </span>
-          <span className="text-gray-300 text-base">·</span>
-          <span className="text-[#727272] text-xs">{course.sessions}</span>
+          <span className="text-gray-300 text-base">·</span> */}
+          {/* <span className="text-[#727272] text-xs">{course.sessions}</span> */}
         </div>
 
         {/* Pricing */}
@@ -121,7 +121,15 @@ function CourseCard({ course }: { course: (typeof courses)[0] }) {
           <span className="text-gray-300">|</span>
           <span className="flex items-center gap-1">
             <Users className="w-3 h-3" />
-            {course.students} Students Capacity
+            1000 Students Capacity
+          </span>
+        </div>
+        <div>
+        <span className="flex items-center gap-1">
+            <svg className="w-3 h-3 fill-[#f59e0b]" viewBox="0 0 12 12">
+              <path d="M6 0L7.34 4.11H11.66L8.16 6.65L9.51 10.76L6 8.22L2.49 10.76L3.84 6.65L0.34 4.11H4.66L6 0Z" />
+            </svg>
+            <span className="text-[#f59e0b] font-semibold text-xs">{course.rating}</span>
           </span>
         </div>
 

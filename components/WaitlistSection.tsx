@@ -198,6 +198,7 @@ export default function WaitlistSection() {
                       <option>AI in Cyber Security</option>
                       <option>AI in Software Engineering</option>
                       <option>AI in Product Management</option>
+                      <option>AI in DevOps</option>
                     </select>
                     <svg
                       className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none"

@@ -1,6 +1,32 @@
 "use client";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { ArrowRight } from "lucide-react";
+
+const COUNTRIES = [
+  { flag: "🇳🇬", name: "Nigeria",        code: "+234" },
+  { flag: "🇬🇭", name: "Ghana",          code: "+233" },
+  { flag: "🇰🇪", name: "Kenya",          code: "+254" },
+  { flag: "🇿🇦", name: "South Africa",   code: "+27"  },
+  { flag: "🇬🇧", name: "United Kingdom", code: "+44"  },
+  { flag: "🇺🇸", name: "United States",  code: "+1"   },
+  { flag: "🇨🇦", name: "Canada",         code: "+1"   },
+  { flag: "🇦🇺", name: "Australia",      code: "+61"  },
+  { flag: "🇮🇳", name: "India",          code: "+91"  },
+  { flag: "🇦🇪", name: "UAE",            code: "+971" },
+  { flag: "🇪🇬", name: "Egypt",          code: "+20"  },
+  { flag: "🇷🇼", name: "Rwanda",         code: "+250" },
+  { flag: "🇹🇿", name: "Tanzania",       code: "+255" },
+  { flag: "🇺🇬", name: "Uganda",         code: "+256" },
+  { flag: "🇸🇳", name: "Senegal",        code: "+221" },
+  { flag: "🇨🇮", name: "Côte d'Ivoire",  code: "+225" },
+  { flag: "🇨🇲", name: "Cameroon",       code: "+237" },
+  { flag: "🇿🇲", name: "Zambia",         code: "+260" },
+  { flag: "🇿🇼", name: "Zimbabwe",       code: "+263" },
+  { flag: "🇪🇹", name: "Ethiopia",       code: "+251" },
+  { flag: "🇩🇪", name: "Germany",        code: "+49"  },
+  { flag: "🇫🇷", name: "France",         code: "+33"  },
+  { flag: "🇳🇱", name: "Netherlands",    code: "+31"  },
+];
 
 const SCRIPT_URL =
   "https://script.google.com/macros/s/AKfycbwbROYvncdflkNnYuFQ9x-LRlDH5-ViiOKtnDnvQvC0yEkIaqKiMpmy_7Zw2FbVRZ6Now/exec";
@@ -49,6 +75,27 @@ function StatPill({
 export default function NewWaitlistSection() {
   const [form, setForm] = useState({ name: "", email: "", phone: "", program: "" });
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [selectedCountry, setSelectedCountry] = useState(COUNTRIES[0]);
+  const [dialSearch, setDialSearch] = useState("");
+  const [dialOpen, setDialOpen] = useState(false);
+  const dialRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (dialRef.current && !dialRef.current.contains(e.target as Node)) {
+        setDialOpen(false);
+        setDialSearch("");
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const filteredCountries = COUNTRIES.filter(
+    (c) =>
+      c.name.toLowerCase().includes(dialSearch.toLowerCase()) ||
+      c.code.includes(dialSearch)
+  );
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -61,7 +108,7 @@ export default function NewWaitlistSection() {
     const formData = new FormData();
     formData.append("name", form.name);
     formData.append("email", form.email);
-    formData.append("phone", form.phone);
+    formData.append("phone", form.phone ? `${selectedCountry.code} ${form.phone}` : "");
     formData.append("program", form.program);
     // Fire and forget — no-cors means we can't read the response anyway,
     // so show success immediately instead of waiting for Google's round-trip.
@@ -317,11 +364,13 @@ export default function NewWaitlistSection() {
 
                   {/* Heading */}
                   <div>
-                    <h3 className="font-[family-name:var(--font-dm-sans)] font-semibold text-xl text-[#222] mb-1">
-                      You&apos;re on the waitlist!
+                    <h3 className="font-[family-name:var(--font-dm-sans)] font-semibold text-xl text-[#222] mb-3">
+                      Thanks for joining the waitlist!
                     </h3>
-                    <p className="text-[#727272] text-sm leading-relaxed max-w-[260px] mx-auto">
-                      We&apos;ll be in touch soon with priority access details.
+                    <p className="text-[#727272] text-sm leading-relaxed max-w-[300px] mx-auto">
+                      Your spot is reserved, and we&apos;re excited to keep you in the loop. You&apos;ll be among the first to hear about upcoming cohort dates, early access registration, and special launch offers for the AI Lecture Series.
+                      <br /><br />
+                      Keep an eye on your inbox — we&apos;ll be sharing updates soon. We can&apos;t wait to learn with you.
                     </p>
                   </div>
 
@@ -387,14 +436,66 @@ export default function NewWaitlistSection() {
 
                     <div className="flex flex-col gap-1.5">
                       <label className="text-sm text-[#222]">Phone Number</label>
-                      <input
-                        type="tel"
-                        name="phone"
-                        value={form.phone}
-                        onChange={handleChange}
-                        placeholder="Enter your phone number"
-                        className="border border-gray-200 rounded-lg px-4 h-12 text-sm outline-none focus:border-[#172435] transition-colors placeholder:text-gray-300"
-                      />
+                      <div className="flex gap-2">
+                        {/* Country code dropdown */}
+                        <div ref={dialRef} className="relative flex-shrink-0">
+                          <button
+                            type="button"
+                            onClick={() => { setDialOpen((o) => !o); setDialSearch(""); }}
+                            className="flex items-center gap-1.5 border border-gray-200 rounded-lg px-3 h-12 text-sm bg-white hover:border-[#172435] transition-colors whitespace-nowrap"
+                          >
+                            <span className="text-base">{selectedCountry.flag}</span>
+                            <span className="text-[#222]">{selectedCountry.code}</span>
+                            <svg width="12" height="12" viewBox="0 0 16 16" fill="none" className="text-gray-400">
+                              <path d="M4 6L8 10L12 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                            </svg>
+                          </button>
+
+                          {dialOpen && (
+                            <div className="absolute top-full left-0 mt-1 w-56 bg-white border border-gray-200 rounded-lg shadow-lg z-50 overflow-hidden">
+                              {/* Search */}
+                              <div className="p-2 border-b border-gray-100">
+                                <input
+                                  autoFocus
+                                  type="text"
+                                  value={dialSearch}
+                                  onChange={(e) => setDialSearch(e.target.value)}
+                                  placeholder="Search country..."
+                                  className="w-full text-sm px-3 py-1.5 border border-gray-200 rounded-md outline-none focus:border-[#172435] transition-colors"
+                                />
+                              </div>
+                              {/* List */}
+                              <ul className="max-h-48 overflow-y-auto">
+                                {filteredCountries.length === 0 ? (
+                                  <li className="px-4 py-2 text-sm text-gray-400">No results</li>
+                                ) : filteredCountries.map((c) => (
+                                  <li key={c.name + c.code}>
+                                    <button
+                                      type="button"
+                                      onClick={() => { setSelectedCountry(c); setDialOpen(false); setDialSearch(""); }}
+                                      className="w-full flex items-center gap-3 px-4 py-2 text-sm hover:bg-gray-50 transition-colors text-left"
+                                    >
+                                      <span className="text-base">{c.flag}</span>
+                                      <span className="flex-1 text-[#222]">{c.name}</span>
+                                      <span className="text-[#727272]">{c.code}</span>
+                                    </button>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          )}
+                        </div>
+
+                        {/* Number input */}
+                        <input
+                          type="tel"
+                          name="phone"
+                          value={form.phone}
+                          onChange={handleChange}
+                          placeholder="Enter your phone number"
+                          className="flex-1 border border-gray-200 rounded-lg px-4 h-12 text-sm outline-none focus:border-[#172435] transition-colors placeholder:text-gray-300"
+                        />
+                      </div>
                     </div>
 
                     <div className="flex flex-col gap-1.5">
@@ -412,6 +513,7 @@ export default function NewWaitlistSection() {
                           <option>AI in Cyber Security</option>
                           <option>AI in Software Engineering</option>
                           <option>AI in Product Management</option>
+                          <option>AI in DevOps</option>
                         </select>
                         <svg className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" width="16" height="16" viewBox="0 0 16 16" fill="none">
                           <path d="M4 6L8 10L12 6" stroke="#737373" strokeWidth="1.33" strokeLinecap="round" strokeLinejoin="round" />

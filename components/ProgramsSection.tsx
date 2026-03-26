@@ -116,8 +116,9 @@ export default function ProgramsSection() {
                   className="text-[#222222] text-base leading-relaxed"
                   style={{ fontFamily: "var(--font-mooli), cursive, system-ui" }}
                 >
-                  Work is evolving and AI is at the center of it. What used to take hours can now
-                  take minutes. Let&apos;s help you apply AI to your actual work.
+                  "Work is evolving and AI is at the center of it. What used to take hours can now
+                  take minutes. Let&apos;s help you apply AI to your actual work."
+                  <span className="block mt-3 text-sm text-[#727272]">~ CEO Brixgate</span>
                 </p>
                 <div className="flex gap-3 mt-2">
                   <div className="h-2 rounded-full bg-[#f3f3f3] w-44" />
