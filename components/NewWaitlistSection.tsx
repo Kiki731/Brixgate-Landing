@@ -108,7 +108,7 @@ export default function NewWaitlistSection() {
     const formData = new FormData();
     formData.append("name", form.name);
     formData.append("email", form.email);
-    formData.append("phone", form.phone ? `${selectedCountry.code} ${form.phone}` : "");
+    formData.append("phone", form.phone ? `(${selectedCountry.code}) ${form.phone}` : "");
     formData.append("program", form.program);
     // Fire and forget — no-cors means we can't read the response anyway,
     // so show success immediately instead of waiting for Google's round-trip.
