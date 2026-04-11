@@ -509,11 +509,12 @@ export default function NewWaitlistSection() {
                         >
                           <option value="" disabled>Select a program</option>
                           <option>General AI</option>
-                          <option>AI in Data Analytic Intelligence</option>
-                          <option>AI in Cyber Security</option>
+                          <option>AI in Data Analytics</option>
+                          <option>AI in Cyber Security $ Intelligence</option>
                           <option>AI in Software Engineering</option>
                           <option>AI in Product Management</option>
-                          <option>AI in DevOps</option>
+                          <option>AI in Cloud & DevOps</option>
+                          <option>AI in Products Design</option>
                         </select>
                         <svg className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" width="16" height="16" viewBox="0 0 16 16" fill="none">
                           <path d="M4 6L8 10L12 6" stroke="#737373" strokeWidth="1.33" strokeLinecap="round" strokeLinejoin="round" />

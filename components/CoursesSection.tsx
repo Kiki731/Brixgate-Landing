@@ -16,7 +16,7 @@ const courses = [
     priceSale: "₦50,000",
     priceUSD: "$64.94",
     priceSaleUSD: "$36.08",
-    image: "/images/Rectangle 122.png",
+    image: "/images/Development.jpeg",
   },
   {
     track: "AI for Professionals",
@@ -29,11 +29,11 @@ const courses = [
     priceSale: "₦50,000",
     priceUSD: "$64.94",
     priceSaleUSD: "$36.08",
-    image: "/images/Rectangle 122.png",
+    image: "/images/Cybersecurity.jpeg",
   },
   {
     track: "AI for Beginners",
-    title: "AI in Data Analytics & Intelligence",
+    title: "AI in Data Analytics",
     sessions: "142 sessions",
     rating: "4.9",
     duration: "2 Weeks",
@@ -42,11 +42,11 @@ const courses = [
     priceSale: "₦50,000",
     priceUSD: "$64.94",
     priceSaleUSD: "$36.08",
-    image: "/images/Rectangle 122-1.png",
+    image: "/images/Data Analytics.jpeg",
   },
   {
     track: "AI for Professionals",
-    title: "AI in DevOps",
+    title: "AI in Cloud & DevOps",
     sessions: "142 sessions",
     rating: "4.9",
     duration: "2 Weeks",
@@ -55,7 +55,7 @@ const courses = [
     priceSale: "₦50,000",
     priceUSD: "$64.94",
     priceSaleUSD: "$36.08",
-    image: "/images/Rectangle 122-2.png",
+    image: "/images/Cloud and DevOps.jpeg",
   },
   {
     track: "AI for Professionals",
@@ -68,8 +68,21 @@ const courses = [
     priceSale: "₦50,000",
     priceUSD: "$64.94",
     priceSaleUSD: "$36.08",
-    image: "/images/Rectangle 122-3.png",
+    image: "/images/Product Management.jpeg",
   },
+  {
+    track: "AI for Professionals",
+    title: "AI in Product Design",
+    sessions: "142 sessions",
+    rating: "4.9",
+    duration: "2 Weeks",
+    students: "1,200 Students",
+    priceFree: "₦89,999",
+    priceSale: "₦50,000",
+    priceUSD: "$64.94",
+    priceSaleUSD: "$36.08",
+    image: "/images/Products design.jpeg",
+  }
 ];
 
 function CourseCard({ course }: { course: (typeof courses)[0] }) {
