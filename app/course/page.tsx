@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
 import CourseNavbar from "@/components/course/CourseNavbar";
 import CourseHero from "@/components/course/CourseHero";
-import WhatYoullLearn from "@/components/course/WhatYoullLearn";
-import SkillsGained from "@/components/course/SkillsGained";
-import ProgramCurriculum from "@/components/course/ProgramCurriculum";
-import WhoIsThisFor from "@/components/course/WhoIsThisFor";
+import SkillsAndCurriculum from "@/components/course/SkillsAndCurriculum";
+import CertificateSection from "@/components/course/CertificateSection";
+import NeedAssistance from "@/components/course/NeedAssistance";
+import ToolsUsed from "@/components/course/ToolsUsed";
 import HowToApply from "@/components/course/HowToApply";
-import PricingSection from "@/components/course/PricingSection";
+import PortfolioProjects from "@/components/course/PortfolioProjects";
+import ProgramCohorts from "@/components/course/ProgramCohorts";
 import CourseTestimonials from "@/components/course/CourseTestimonials";
 import CourseFAQ from "@/components/course/CourseFAQ";
+import OtherPrograms from "@/components/course/OtherPrograms";
 import EnrollSection from "@/components/course/EnrollSection";
 
 export const metadata: Metadata = {
@@ -22,14 +24,16 @@ export default function CoursePage() {
     <main className="min-h-screen bg-white">
       <CourseNavbar />
       <CourseHero />
-      <WhatYoullLearn />
-      <SkillsGained />
-      <ProgramCurriculum />
-      <WhoIsThisFor />
+      <SkillsAndCurriculum />
+      <CertificateSection />
+      <NeedAssistance />
+      <ToolsUsed />
       <HowToApply />
-      <PricingSection />
+      <PortfolioProjects />
+      <ProgramCohorts />
       <CourseTestimonials />
       <CourseFAQ />
+      <OtherPrograms />
       <EnrollSection />
     </main>
   );

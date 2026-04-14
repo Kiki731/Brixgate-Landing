@@ -79,7 +79,7 @@ export default function Hero() {
         {/* ── Right Column: 1440px+ only, inside container ── */}
         <div className="hidden [@media(min-width:1550px)]:flex flex-1 items-end justify-center anim-slide-right delay-300">
           <Image
-            src="/images/Responsive-hero.png"
+            src="/images/Responsivenesshero.png"
             alt="Applied Artificial Intelligence — Cohort 1.2"
             width={880}
             height={758}
@@ -93,7 +93,7 @@ export default function Hero() {
       {/* Below 1440px: pinned to right edge of screen */}
       <div className="hidden lg:block [@media(min-width:1550px)]:hidden absolute right-0 bottom-[60px] z-10 anim-slide-right delay-300">
         <Image
-          src="/images/hero-right-panel4.png"
+          src="/images/Responsivenesshero.png"
           alt="Applied Artificial Intelligence — Cohort 1.2"
           width={740}
           height={637}
