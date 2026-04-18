@@ -7,7 +7,7 @@ const SCRIPT_URL =
 
 type Status = "idle" | "submitting" | "success" | "error";
 
-export default function EnrollSection() {
+export default function EnrollSection({ courseName }: { courseName: string }) {
   const [form, setForm] = useState({ name: "", email: "", phone: "", role: "" });
   const [status, setStatus] = useState<Status>("idle");
 
@@ -20,7 +20,7 @@ export default function EnrollSection() {
     formData.append("name", form.name);
     formData.append("email", form.email);
     formData.append("phone", form.phone ? `(${form.phone})` : "");
-    formData.append("track", "AI in Cyber Security & Intelligence");
+    formData.append("track", courseName);
     formData.append("role", form.role);
 
     fetch(SCRIPT_URL, { method: "POST", mode: "no-cors", body: formData }).catch(() => {});
@@ -56,7 +56,7 @@ export default function EnrollSection() {
               </div>
               <h3 className="font-bold text-[#0f172a] text-xl">You&apos;re in!</h3>
               <p className="text-[#475569] text-sm max-w-[340px] leading-relaxed">
-                Thanks for applying to Cohort 1. Check your inbox — we&apos;ll send your confirmation and next steps within 24 hours.
+                Thanks for applying to {courseName}. Check your inbox — we&apos;ll send your confirmation and next steps within 24 hours.
               </p>
             </div>
           ) : (

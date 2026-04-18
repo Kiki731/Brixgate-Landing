@@ -1,37 +1,8 @@
 import Image from "next/image";
 import { Star } from "lucide-react";
+import type { CourseTestimonial } from "@/lib/courses-data";
 
-const testimonials = [
-  {
-    name: "Adeyemi Oluremi",
-    role: "Penetration Tester",
-    location: "Lagos, Nigeria",
-    quote: "I went in sceptical about whether AI could fit into a penetration testing workflow. Three weeks later I had a working setup and my recon time dropped by more than half. The local setup is the most useful thing — no data leaving our environment.",
-    rating: 4.9,
-    alumni: "3k",
-    avatar: "/images/testimonial-avatar-1.png",
-  },
-  {
-    name: "Emeka Davis",
-    role: "SOC Engineer",
-    location: "Abuja, Nigeria",
-    quote: "Finally a program that treats us like professionals. No hand-holding, no basics I already know. Straight into applying AI to real security problems. I built an IR playbook in Week 3 that my team is actually using right now.",
-    rating: 4.9,
-    alumni: "6k",
-    avatar: "/images/testimonial-avatar-2.png",
-  },
-  {
-    name: "Wale Adams",
-    role: "Cloud Security Engineer",
-    location: "Port-Harcourt, Nigeria",
-    quote: "The SIEM triage section alone justified the enrollment fee. We went from 400 daily alerts to a manageable queue of about 30 that actually need human attention. That's the kind of shift that changes how a team operates.",
-    rating: 4.9,
-    alumni: "2.5k",
-    avatar: "/images/testimonial-avatar-3.png",
-  },
-];
-
-export default function CourseTestimonials() {
+export default function CourseTestimonials({ testimonials }: { testimonials: CourseTestimonial[] }) {
   return (
     <section className="py-16 bg-white">
       <div className="max-w-[1280px] mx-auto px-6">
@@ -62,10 +33,9 @@ export default function CourseTestimonials() {
               key={t.name}
               className="bg-white border border-[#f0f0f0] rounded-2xl p-6 flex flex-col gap-5 shadow-sm"
             >
-              {/* Avatar + name */}
               <div className="flex items-center gap-3">
-                <div className="w-11 h-11 rounded-full overflow-hidden relative shrink-0">
-                  <Image src={t.avatar} alt={t.name} fill className="object-cover" />
+                <div className="w-14 h-14 rounded-full overflow-hidden relative shrink-0">
+                  <Image src={t.avatar} alt={t.name} fill className="object-cover" sizes="44px" />
                 </div>
                 <div>
                   <p
@@ -89,7 +59,6 @@ export default function CourseTestimonials() {
                 </div>
               </div>
 
-              {/* Quote */}
               <p
                 className="text-[#475569] text-[14px] leading-relaxed flex-1"
                 style={{ fontFamily: "'Segoe UI', system-ui, sans-serif" }}
@@ -97,8 +66,7 @@ export default function CourseTestimonials() {
                 &ldquo;{t.quote}&rdquo;
               </p>
 
-              {/* Rating + alumni */}
-              <div className="flex items-center gap-3 pt-2 border-t border-[#f4f4f4]">
+              <div className="flex items-center gap-3 pt-2 ">
                 <div className="flex items-center gap-0.5">
                   <Star className="w-3.5 h-3.5 fill-[#f59e0b] text-[#f59e0b]" />
                   <span

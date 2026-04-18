@@ -1,31 +1,9 @@
 "use client";
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
+import type { CourseFAQItem } from "@/lib/courses-data";
 
-const faqs = [
-  {
-    q: "Do I need to already work in cybersecurity?",
-    a: "Yes — this program is designed for working cybersecurity professionals who want to augment their skills with AI. You should already have a foundational understanding of security concepts like networks, threat types, and basic tooling. We don't teach cybersecurity basics; we teach you how AI changes what you can do with what you already know.",
-  },
-  {
-    q: "What does \"Live Instructor-Led\" mean exactly?",
-    a: "Every session runs live online via video — not pre-recorded. You'll interact directly with the instructor, ask questions in real time, and work through exercises with your cohort. Sessions are also recorded so you can review them, but the primary experience is live.",
-  },
-  {
-    q: "Will I need to pay for AI tools on top of the fee?",
-    a: "No. The program is structured around tools with free tiers or open-source options. Ollama (local AI), open-source SIEM setups, and free-tier ChatGPT are used throughout. Where a paid tool is demonstrated, a free alternative is always provided.",
-  },
-  {
-    q: "Is the certificate recognised by employers?",
-    a: "The certificate is issued by Brixgate and tied to a verifiable capstone project. It's designed to be portfolio-evidence, not just a participation badge. Increasingly, employers in security value demonstrated capability over credentials — the project artefact is the real differentiator.",
-  },
-  {
-    q: "Can my company pay on my behalf?",
-    a: "Yes. We can issue an invoice to your company or employer. Contact us at we@brixgate.com with your company's billing details and we'll arrange it. Corporate group enrollments (3+ seats) also receive a discount.",
-  },
-];
-
-export default function CourseFAQ() {
+export default function CourseFAQ({ faqs }: { faqs: CourseFAQItem[] }) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (

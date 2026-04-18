@@ -1,16 +1,37 @@
 "use client";
-import { ArrowRight, CheckCircle } from "lucide-react";
+import Image from "next/image";
 
 const features = [
-  "25 live sessions (2 weeks, weekdays + weekends)",
-  "Hands-on projects & real-world datasets",
-  "Certificate of completion",
-  "Access to recorded sessions for 3 months",
-  "Private Slack community access",
-  "1-on-1 career mentorship session",
-  "Portfolio review by industry practitioners",
-  "Job placement support",
+  "6 live instructor-led sessions",
+  "Verifiable certificate of completion",
+  "Full access to all course materials",
+  "Access to Brixgate Expert Network community",
+  "Hands-on labs every session",
+  "All tools run locally — no extra subscriptions",
+  "Capstone project with instructor feedback",
 ];
+
+function CircleCheck() {
+  return (
+    <svg
+      width="18"
+      height="18"
+      viewBox="0 0 18 18"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className="shrink-0 mt-[1px]"
+    >
+      <circle cx="9" cy="9" r="8" stroke="#6d28d9" strokeWidth="1.5" />
+      <path
+        d="M5.5 9.5L7.5 11.5L12.5 7"
+        stroke="#6d28d9"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
 
 export default function PricingSection() {
   const scrollToEnroll = () => {
@@ -19,79 +40,153 @@ export default function PricingSection() {
   };
 
   return (
-    <section id="pricing" className="py-16 bg-[#f8fafc]">
+    <section id="pricing" className="py-20 bg-white">
       <div className="max-w-[1280px] mx-auto px-6">
-        <div className="text-center mb-12">
-          <p className="text-[#727272] text-xs font-medium tracking-widest uppercase mb-3">
-            Investment
-          </p>
-          <h2 className="font-[family-name:var(--font-dm-sans)] font-medium text-[32px] lg:text-[40px] text-[#0f172a] leading-tight">
-            Program Pricing
-          </h2>
-        </div>
+        {/* gap-0 so the left blob and card are flush — no space between them */}
+        <div className="flex flex-col lg:flex-row items-center gap-0 lg:justify-center">
 
-        <div className="max-w-[900px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* Naira card */}
-          <div className="bg-white rounded-2xl border border-gray-200 p-8 flex flex-col gap-6">
-            <div>
-              <span className="text-[#727272] text-sm font-medium">Nigerian Naira</span>
-              <div className="flex items-end gap-2 mt-2">
-                <span className="text-[#0f172a] font-bold text-[40px] leading-none">₦50,000</span>
-                <span className="text-[#727272] text-sm line-through mb-1">₦89,999</span>
-              </div>
-              <span className="inline-block bg-[#fef2f2] text-[#d51420] text-xs font-semibold px-2.5 py-1 rounded-full mt-2">
-                Early Bird — Save 44%
-              </span>
-            </div>
-
-            <ul className="flex flex-col gap-3">
-              {features.map((f) => (
-                <li key={f} className="flex items-start gap-2.5">
-                  <CheckCircle className="w-4 h-4 text-[#16a34a] shrink-0 mt-0.5" />
-                  <span className="text-[#475569] text-sm">{f}</span>
-                </li>
-              ))}
-            </ul>
-
-            <button
-              onClick={scrollToEnroll}
-              className="mt-auto flex items-center justify-center gap-2 bg-[#d51420] hover:bg-[#b8111e] transition-colors text-white font-semibold text-sm px-6 py-3.5 rounded-xl"
+          {/* ── Left: Hero Text — height hugs content, vertically centered in row ── */}
+          <div className="w-full lg:w-auto lg:shrink-0 relative px-8 py-10">
+            {/* right corners square so it sits flush against the pricing card; left-only stroke */}
+            <div className="absolute inset-0 bg-[#efefef] rounded-tl-2xl rounded-bl-2xl border-l-[6px] border-[#727272]" />
+            <h2
+              className="relative z-10 text-[#1a1a1a] text-[28px] lg:text-[38px] font-medium leading-[1.2] tracking-[-0.03em] lg:whitespace-nowrap py-8"
+              style={{ fontFamily: "var(--font-dm-sans)" }}
             >
-              Enroll Now
-              <ArrowRight className="w-4 h-4" />
-            </button>
+              One price.<br />Everything included.
+            </h2>
           </div>
 
-          {/* USD card */}
-          <div className="bg-[#0f172a] rounded-2xl border border-[#1e2d3d] p-8 flex flex-col gap-6">
-            <div>
-              <span className="text-white/50 text-sm font-medium">US Dollar (International)</span>
-              <div className="flex items-end gap-2 mt-2">
-                <span className="text-white font-bold text-[40px] leading-none">$36</span>
-                <span className="text-white/40 text-sm line-through mb-1">$64.94</span>
-              </div>
-              <span className="inline-block bg-[#d51420]/20 text-[#ff6b6b] text-xs font-semibold px-2.5 py-1 rounded-full mt-2">
-                Early Bird — Save 44%
-              </span>
+          {/* ── Right: Pricing Card — fully separate, all edges rounded ── */}
+          <div className="w-full lg:w-[700px] lg:shrink-0 relative">
+
+            {/* fix 6: sparks replaced with the actual PNG */}
+            <div className="absolute -top-9 right-0 z-30 pointer-events-none">
+              <Image
+                src="/images/Group 1171276387.png"
+                width={56}
+                height={56}
+                alt=""
+              />
             </div>
 
-            <ul className="flex flex-col gap-3">
-              {features.map((f) => (
-                <li key={f} className="flex items-start gap-2.5">
-                  <CheckCircle className="w-4 h-4 text-[#4ade80] shrink-0 mt-0.5" />
-                  <span className="text-white/70 text-sm">{f}</span>
-                </li>
-              ))}
-            </ul>
+            {/* all four corners rounded — fully independent card */}
+            <div className="relative border-[16px] border-[#A855F7] rounded-[24px] bg-white overflow-hidden">
 
-            <button
-              onClick={scrollToEnroll}
-              className="mt-auto flex items-center justify-center gap-2 bg-[#d51420] hover:bg-[#b8111e] transition-colors text-white font-semibold text-sm px-6 py-3.5 rounded-xl"
-            >
-              Enroll Now
-              <ArrowRight className="w-4 h-4" />
-            </button>
+              {/* "Pricing" tab badge */}
+              <div
+                className="absolute top-0 right-0 bg-[#A855F7] text-white text-lg font-semibold px-6 py-2.5 rounded-bl-[20px] z-10"
+                style={{ fontFamily: "var(--font-dm-sans)" }}
+              >
+                Pricing
+              </div>
+
+              {/* Card body */}
+              <div className="px-7 pt-12 pb-7 flex flex-col gap-4">
+
+                {/* fix 3 + fix 5: smaller prices, each strikethrough sits directly below its price */}
+                <div className="flex items-start gap-5 flex-wrap">
+
+                  {/* NGN column: price on top, strikethrough directly below */}
+                  <div className="flex flex-col gap-0.5">
+                    <div className="flex items-baseline">
+                      <span
+                        className="text-[#1a1a1a] text-[19px] font-bold leading-none"
+                        style={{ fontFamily: "var(--font-dm-sans)" }}
+                      >₦</span>
+                      <span
+                        className="text-[#1a1a1a] text-[44px] font-bold leading-none tracking-[-0.03em]"
+                        style={{ fontFamily: "var(--font-dm-sans)" }}
+                      >50,000</span>
+                      <span
+                        className="text-[#1a1a1a] text-[19px] font-bold leading-none"
+                        style={{ fontFamily: "var(--font-dm-sans)" }}
+                      >.00</span>
+                    </div>
+                    <span
+                      className="text-[#dc2626] text-[14px] font-medium line-through"
+                      style={{ fontFamily: "'Segoe UI', system-ui, sans-serif" }}
+                    >₦120,000</span>
+                  </div>
+
+                  {/* Separator — aligned to top (main price row) */}
+                  <span className="text-[#94a3b8] text-2xl font-light mt-2">/</span>
+
+                  {/* USD column: price on top, strikethrough directly below */}
+                  <div className="flex flex-col gap-0.5">
+                    <div className="flex items-baseline">
+                      <span
+                        className="text-[#1a1a1a] text-[19px] font-bold leading-none"
+                        style={{ fontFamily: "var(--font-dm-sans)" }}
+                      >$</span>
+                      <span
+                        className="text-[#1a1a1a] text-[44px] font-bold leading-none tracking-[-0.03em]"
+                        style={{ fontFamily: "var(--font-dm-sans)" }}
+                      >36</span>
+                      <span
+                        className="text-[#1a1a1a] text-[19px] font-bold leading-none"
+                        style={{ fontFamily: "var(--font-dm-sans)" }}
+                      >.22</span>
+                    </div>
+                    <span
+                      className="text-[#dc2626] text-[14px] font-medium line-through"
+                      style={{ fontFamily: "'Segoe UI', system-ui, sans-serif" }}
+                    >$86.97</span>
+                  </div>
+                </div>
+
+                {/* Subtitle */}
+                <p
+                  className="text-[#222222] text-[14px]"
+                  style={{ fontFamily: "'Segoe UI', system-ui, sans-serif" }}
+                >
+                  one-time payment · full 3-week program
+                </p>
+
+                {/* Dashed divider */}
+                <hr className="border-dashed border-[#cbd5e1]" />
+
+                {/* Features — 2-column grid */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-3 pt-1">
+                  {features.map((f) => (
+                    <div key={f} className="flex items-start gap-2">
+                      <CircleCheck />
+                      <span
+                        className="text-[#334155] text-[13px] leading-[1.5]"
+                        style={{ fontFamily: "'Segoe UI', system-ui, sans-serif" }}
+                      >
+                        {f}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Enroll Now button */}
+                <button
+                  onClick={scrollToEnroll}
+                  className="w-full py-4 rounded-lg text-white font-semibold text-[15px] mt-2 hover:opacity-95 transition-opacity"
+                  style={{
+                    fontFamily: "var(--font-dm-sans)",
+                    background: "linear-gradient(to right, #b01818 0%, #d51420 20%, #d51420 100%)",
+                    boxShadow: "inset 3px 0 10px rgba(0,0,0,0.18)",
+                  }}
+                >
+                  Enroll Now
+                </button>
+              </div>
+
+              {/* Footer ribbon */}
+              <div className="bg-[#A855F7] py-3 px-7 text-center">
+                <p
+                  className="text-white text-sm font-bold tracking-wide"
+                  style={{ fontFamily: "'Segoe UI', system-ui, sans-serif" }}
+                >
+                  Cohort sizes are limited. Enrollment closes once cohort is full.
+                </p>
+              </div>
+            </div>
           </div>
+
         </div>
       </div>
     </section>

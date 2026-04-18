@@ -1,29 +1,36 @@
 "use client";
+import type { CourseStep, CourseProfession } from "@/lib/courses-data";
 
-const steps = [
-  { num: 1, title: "Submit Application", desc: "Fill in your application by providing your details." },
-  { num: 2, title: "Reserve your seat", desc: "Select the course that fits your goals." },
-  { num: 3, title: "Start Learning", desc: "Begin your Brixgate learning journey." },
-];
+interface Props {
+  steps: CourseStep[];
+  professions: CourseProfession[];
+  eligibility: string[];
+}
 
-const professions = [
-  { label: "Security Analyst", color: "bg-[#e0f2fe] text-[#0369a1]" },
-  { label: "Penetration Testers", color: "bg-[#fce7f3] text-[#9d174d]" },
-  { label: "SOC Engineers", color: "bg-[#f0fdf4] text-[#166534]" },
-  { label: "Cloud Security Engineers", color: "bg-[#fef9c3] text-[#854d0e]" },
-  { label: "Incidence Responders", color: "bg-[#fff7ed] text-[#9a3412]" },
-  { label: "GRC Professionals", color: "bg-[#f0fdf4] text-[#14532d]" },
-];
-
-const eligibility = [
-  "Experienced cybersecurity professional",
-  "Interest in using AI in cybersecurity",
-  "Problem-solving mindset",
-];
-
-export default function HowToApply() {
+function LongDownArrow() {
   return (
-    <section className="py-16 bg-[#f8fafc]">
+    <svg width="16" height="48" viewBox="0 0 16 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M8 0V42"
+        stroke="#D1D5DB"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeDasharray="4 3"
+      />
+      <path
+        d="M2 36L8 44L14 36"
+        stroke="#D1D5DB"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+export default function HowToApply({ steps, professions, eligibility }: Props) {
+  return (
+    <section className="py-16 bg-[#FAFAFA]">
       <div className="max-w-[1280px] mx-auto px-6 flex flex-col lg:flex-row gap-10">
 
         {/* Left: How To Apply */}
@@ -38,33 +45,42 @@ export default function HowToApply() {
             className="text-[#727272] text-[14px] mb-8"
             style={{ fontFamily: "'Segoe UI', system-ui, sans-serif" }}
           >
-            Get started in 4 easy steps
+            Get started in {steps.length} easy steps
           </p>
 
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col">
             {steps.map((step, i) => (
               <div key={step.num}>
-                <div className="bg-white rounded-xl border border-[#f0f0f0] px-5 py-4 flex items-start gap-4 shadow-sm">
-                  <div className="w-8 h-8 rounded-full bg-[#7c3aed] text-white text-sm font-bold flex items-center justify-center shrink-0">
+                {/* Step card */}
+                <div className="bg-white rounded-xl px-5 py-5 flex items-center gap-4 shadow-[0px_2px_12px_0px_rgba(0,0,0,0.06)]">
+                  {/* Rounded square number badge — size matches text block height */}
+                  <div
+                    className="w-[44px] h-[44px] rounded-[8px] bg-[#7c3aed] text-white text-[16px] font-bold flex items-center justify-center shrink-0"
+                    style={{ fontFamily: "var(--font-dm-sans)" }}
+                  >
                     {step.num}
                   </div>
                   <div>
                     <p
-                      className="text-[#222] text-[15px] font-semibold"
+                      className="text-[#222] text-[15px] font-semibold leading-[22px]"
                       style={{ fontFamily: "'Segoe UI', system-ui, sans-serif" }}
                     >
                       {step.title}
                     </p>
                     <p
-                      className="text-[#727272] text-[13px] mt-0.5"
+                      className="text-[#727272] text-[13px] leading-[20px]"
                       style={{ fontFamily: "'Segoe UI', system-ui, sans-serif" }}
                     >
                       {step.desc}
                     </p>
                   </div>
                 </div>
+
+                {/* Long dashed arrow between steps */}
                 {i < steps.length - 1 && (
-                  <div className="ml-9 my-1 text-[#ccc] text-lg leading-none">↓</div>
+                  <div className="ml-[28px] flex items-center py-2">
+                    <LongDownArrow />
+                  </div>
                 )}
               </div>
             ))}
@@ -86,43 +102,45 @@ export default function HowToApply() {
             This program is built for professionals, not beginners
           </p>
 
-          {/* Profession grid */}
-          <div className="bg-white rounded-xl border border-[#f0f0f0] shadow-sm p-5 mb-6">
+          {/* Single card housing both profession pills AND eligibility */}
+          <div className="bg-white rounded-xl p-5 flex flex-col gap-4 shadow-[0px_2px_12px_0px_rgba(0,0,0,0.06)]">
+            {/* Profession pills grid */}
             <div className="grid grid-cols-2 gap-3">
               {professions.map((p) => (
                 <div
                   key={p.label}
-                  className={`${p.color} rounded-lg px-4 py-3 text-sm font-medium`}
-                  style={{ fontFamily: "'Segoe UI', system-ui, sans-serif" }}
+                  className={`${p.color} rounded-lg px-4 py-4 text-sm`}
+                  style={{ fontFamily: "'Segoe UI', system-ui, sans-serif", fontWeight: 600 }}
                 >
                   {p.label}
                 </div>
               ))}
             </div>
-          </div>
 
-          {/* Eligibility */}
-          <div>
-            <p
-              className="text-[#222] text-[15px] font-semibold mb-3"
-              style={{ fontFamily: "'Segoe UI', system-ui, sans-serif" }}
-            >
-              Eligibility Criteria
-            </p>
-            <ul className="flex flex-col gap-2">
-              {eligibility.map((item) => (
-                <li
-                  key={item}
-                  className="flex items-center gap-2 text-[#475569] text-sm"
-                  style={{ fontFamily: "'Segoe UI', system-ui, sans-serif" }}
-                >
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#475569] shrink-0" />
-                  {item}
-                </li>
-              ))}
-            </ul>
+            {/* Eligibility Criteria — inside the card with #FAFAFA bg */}
+            <div className="bg-[#FAFAFA] rounded-lg p-4">
+              <p
+                className="text-[#222] text-[15px] font-semibold mb-3"
+                style={{ fontFamily: "'Segoe UI', system-ui, sans-serif" }}
+              >
+                Eligibility Criteria
+              </p>
+              <ul className="flex flex-col gap-2">
+                {eligibility.map((item) => (
+                  <li
+                    key={item}
+                    className="flex items-center gap-2 text-[#475569] text-sm"
+                    style={{ fontFamily: "'Segoe UI', system-ui, sans-serif" }}
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#475569] shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
+
       </div>
     </section>
   );

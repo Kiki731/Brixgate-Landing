@@ -1,24 +1,8 @@
 import Image from "next/image";
+import Link from "next/link";
+import type { CourseLink } from "@/lib/courses-data";
 
-const programs = [
-  {
-    title: "AI in Data Analytics & Intelligence",
-    image: "/images/Data Analytics.jpeg",
-    href: "#",
-  },
-  {
-    title: "AI in Product Management",
-    image: "/images/Product Management.jpeg",
-    href: "#",
-  },
-  {
-    title: "AI in DevOps & Cloud Computing",
-    image: "/images/Cloud and DevOps.jpeg",
-    href: "#",
-  },
-];
-
-export default function OtherPrograms() {
+export default function OtherPrograms({ programs }: { programs: CourseLink[] }) {
   return (
     <section className="py-16 bg-white">
       <div className="max-w-[1280px] mx-auto px-6">
@@ -31,13 +15,13 @@ export default function OtherPrograms() {
 
         <div className="flex flex-col sm:flex-row gap-6">
           {programs.map((p) => (
-            <a
-              key={p.title}
-              href={p.href}
+            <Link
+              key={p.slug}
+              href={`/course/${p.slug}`}
               className="flex items-center gap-4 group flex-1 bg-[#f8fafc] hover:bg-[#f0f4ff] border border-[#f0f0f0] rounded-xl p-4 transition-colors"
             >
               <div className="w-[72px] h-[72px] relative rounded-lg overflow-hidden shrink-0">
-                <Image src={p.image} alt={p.title} fill className="object-cover" />
+                <Image src={p.image} alt={p.title} fill className="object-cover" sizes="72px" />
               </div>
               <p
                 className="text-[#222] text-[14px] font-medium leading-snug group-hover:text-[#474dc1] transition-colors"
@@ -45,7 +29,7 @@ export default function OtherPrograms() {
               >
                 {p.title}
               </p>
-            </a>
+            </Link>
           ))}
         </div>
       </div>

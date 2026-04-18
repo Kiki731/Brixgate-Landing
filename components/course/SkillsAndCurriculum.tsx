@@ -2,24 +2,18 @@
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 
-const skills = [
-  "Automate triage & threat detection",
-  "Smarter recon, faster engagements",
-  "Build AI-native security operations",
-  "Enforce compliance at scale",
-  "AI-assisted forensics & triage",
-  "Automate compliance workflows",
-];
+interface CurriculumData {
+  title: string;
+  description: string;
+  items: string[];
+}
 
-const curriculumItems = [
-  "Introduction to AI & Cybersecurity Fundamentals",
-  "Threat Intelligence with Machine Learning",
-  "AI-Powered Intrusion Detection & Response",
-  "Penetration Testing Augmented with AI",
-  "Continuous Integration and Security Automation (CI/CS)",
-];
+interface Props {
+  skills: string[];
+  curriculum: CurriculumData;
+}
 
-export default function SkillsAndCurriculum() {
+export default function SkillsAndCurriculum({ skills, curriculum }: Props) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [expandAll, setExpandAll] = useState(false);
 
@@ -60,24 +54,21 @@ export default function SkillsAndCurriculum() {
         {/* Program Curriculum */}
         <div id="curriculum" className="bg-white border border-[#f4f4f4] rounded-[12px] p-6 flex flex-col gap-12">
           <div className="flex flex-col gap-6">
-            {/* Title + description */}
             <div className="flex flex-col gap-4">
               <h2
                 className="text-[#222] text-[32px] font-medium tracking-[-0.05em]"
                 style={{ fontFamily: "var(--font-dm-sans)" }}
               >
-                Program Curriculum
+                {curriculum.title}
               </h2>
               <p
                 className="text-[#727272] text-[18px] leading-[1.625]"
                 style={{ fontFamily: "'Segoe UI', system-ui, sans-serif" }}
               >
-                Every week builds on the last — from AI foundations through to a
-                working AI-augmented security toolkit you deploy immediately.
+                {curriculum.description}
               </p>
             </div>
 
-            {/* Content header */}
             <div className="flex flex-col gap-2">
               <div className="flex items-center justify-between">
                 <span
@@ -95,9 +86,8 @@ export default function SkillsAndCurriculum() {
                 </button>
               </div>
 
-              {/* Accordion rows */}
               <div className="border border-[#e2e8f0] rounded-[6px] overflow-hidden shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)]">
-                {curriculumItems.map((item, i) => (
+                {curriculum.items.map((item, i) => (
                   <div key={item} className={i > 0 ? "border-t border-[#e2e8f0]" : ""}>
                     <button
                       className="w-full flex items-center justify-between gap-2 bg-[#fafafa] hover:bg-gray-50 transition-colors px-[18px] py-[13px] h-[70px]"
