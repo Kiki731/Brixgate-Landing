@@ -49,7 +49,8 @@
       "mcp__4b6009cf-d139-4f19-8da2-c864ef434c3b__use_figma",
       "Bash(npx tsc *)",
       "Bash(kill 13835)",
-      "Bash(python3 -c ' *)"
+      "Bash(python3 -c ' *)",
+      "Bash(git config *)"
     ]
   }
 }

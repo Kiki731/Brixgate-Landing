@@ -510,7 +510,7 @@ export default function NewWaitlistSection() {
                           <option value="" disabled>Select a program</option>
                           <option>General AI</option>
                           <option>AI in Data Analytics</option>
-                          <option>AI in Cyber Security $ Intelligence</option>
+                          <option>AI in Cyber Security & Intelligence</option>
                           <option>AI in Software Engineering</option>
                           <option>AI in Product Management</option>
                           <option>AI in Cloud & DevOps</option>

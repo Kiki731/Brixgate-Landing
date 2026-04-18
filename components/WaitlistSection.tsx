@@ -194,8 +194,8 @@ export default function WaitlistSection() {
                         Select a program
                       </option>
                       <option>General AI</option>
-                      <option>AI in Data Analytic Intelligence</option>
-                      <option>AI in Cyber Security</option>
+                      <option>AI in Data Analytic & Intelligence</option>
+                      <option>AI in Cyber Security & Intelligence</option>
                       <option>AI in Software Engineering</option>
                       <option>AI in Product Management</option>
                       <option>AI in DevOps</option>
