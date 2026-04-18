@@ -14,7 +14,7 @@ export default function CourseTestimonials({ testimonials }: { testimonials: Cou
             Testimonials
           </p>
           <h2
-            className="text-[#222] text-[40px] font-medium tracking-[-0.05em]"
+            className="text-[#222] text-[26px] sm:text-[40px] font-medium tracking-[-0.05em]"
             style={{ fontFamily: "var(--font-dm-sans)" }}
           >
             Trusted by Learners Everywhere

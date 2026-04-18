@@ -5,7 +5,16 @@ import type { CoursePractitioner } from "@/lib/courses-data";
 
 export default function OurPractitioners({ practitioners }: { practitioners: CoursePractitioner[] }) {
   const [active, setActive] = useState(0);
+  const [isNarrow, setIsNarrow] = useState(false);
   const p = practitioners[active];
+
+  // Track whether viewport is < 524px to swap mobile background image
+  useEffect(() => {
+    const check = () => setIsNarrow(window.innerWidth < 524);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
 
   // Auto-advance every 4 seconds; resets if user manually picks a slide
   useEffect(() => {
@@ -140,14 +149,17 @@ export default function OurPractitioners({ practitioners }: { practitioners: Cou
           </p>
 
           <div
-            className="-mx-6"
+            className="-mx-6 flex flex-col overflow-hidden"
             style={{
-              backgroundImage: "url('/images/Rectangle 140.png')",
+              backgroundImage: isNarrow
+                ? "url('/images/BG _ 524.png')"
+                : "url('/images/Rectangle 140.png')",
               backgroundSize: "100% 100%",
               backgroundRepeat: "no-repeat",
+              height: "620px",
             }}
           >
-            <div className="px-8 pt-12 pb-4 flex flex-col gap-4">
+            <div className="px-8 pt-20 pb-4 flex flex-col gap-4">
               <h3
                 className="text-white font-bold text-[16px] leading-snug"
                 style={{ fontFamily: "var(--font-dm-sans)" }}
@@ -182,7 +194,7 @@ export default function OurPractitioners({ practitioners }: { practitioners: Cou
               </p>
             </div>
 
-            <div className="relative w-full h-[300px] mt-2">
+            <div className="relative w-full h-[300px] mt-auto">
               <Image
                 src={p.photo}
                 alt={p.name}

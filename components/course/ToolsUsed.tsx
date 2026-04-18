@@ -8,7 +8,7 @@ export default function ToolsUsed({ tools }: { tools: CourseTool[] }) {
     <section className="py-16 bg-white">
       <div className="max-w-[1280px] mx-auto px-6">
         <h2
-          className="text-[#222] text-[32px] font-medium tracking-[-0.05em] mb-8"
+          className="text-[#222] text-[22px] sm:text-[32px] font-medium tracking-[-0.05em] mb-8"
           style={{ fontFamily: "var(--font-dm-sans)" }}
         >
           Over {tools.length}+ Tools Used
@@ -44,8 +44,8 @@ export default function ToolsUsed({ tools }: { tools: CourseTool[] }) {
                 alt="AI tools used in this program"
                 width={1138}
                 height={358}
-                className="w-[70%] h-auto"
-                sizes="(max-width: 1280px) 100vw, 1280px"
+                className="w-full sm:w-[85%] lg:w-[70%] h-auto"
+                sizes="(max-width: 640px) 100vw, (max-width: 1280px) 85vw, 1280px"
                 priority
               />
             </div>

@@ -37,7 +37,7 @@ export default function CourseHero({ hero }: { hero: HeroData }) {
               </div>
             </div>
 
-            <h1 className="font-[family-name:var(--font-dm-sans)] font-medium text-[#222] leading-[0.91] text-[48px] lg:text-[67px]">
+            <h1 className="font-[family-name:var(--font-dm-sans)] font-medium text-[#222] leading-[0.91] text-[34px] sm:text-[48px] lg:text-[67px]">
               {hero.title}
             </h1>
 
@@ -51,7 +51,7 @@ export default function CourseHero({ hero }: { hero: HeroData }) {
             <div className="flex flex-wrap items-center gap-5 mt-2">
               <button
                 onClick={scrollToEnroll}
-                className="flex items-center gap-2.5 bg-[#d51520] text-white font-medium text-base px-8 py-3.5 rounded-[5.4px] h-[52px]"
+                className="flex items-center gap-2 bg-[#d51520] text-white font-semibold text-sm px-5 py-2.5 rounded-lg sm:gap-2.5 sm:font-medium sm:text-base sm:px-8 sm:py-3.5 sm:rounded-[5.4px] sm:h-[52px]"
                 style={{ fontFamily: "'Inter', sans-serif" }}
               >
                 Enroll Now - Secure Your Spot
@@ -61,7 +61,7 @@ export default function CourseHero({ hero }: { hero: HeroData }) {
               </button>
               <button
                 onClick={scrollToCurriculum}
-                className="flex items-center justify-center border border-[#222] text-[#222] font-medium text-base px-8 py-3.5 rounded-[5.4px] h-[52px]"
+                className="flex items-center justify-center border border-[#222] text-[#222] font-semibold text-sm px-5 py-2.5 rounded-lg sm:font-medium sm:text-base sm:px-8 sm:py-3.5 sm:rounded-[5.4px] sm:h-[52px]"
                 style={{ fontFamily: "'Inter', sans-serif" }}
               >
                 View Curriculum
@@ -99,22 +99,22 @@ export default function CourseHero({ hero }: { hero: HeroData }) {
         </div>
       </section>
 
-      {/* Stats Bar — outside hero section, bridging the boundary */}
-      {/* ↕ ADJUST POSITION: change -mt-[50px] — more negative = higher into hero bg */}
-      <div className="relative z-20 max-w-[1240px] mx-auto px-6 -mt-[50px]">
-        <div className="bg-[#172435] rounded-[24px] px-[38px] py-[16px] shadow-xl">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-0">
+      {/* Stats Bar */}
+      <div className="relative z-20 max-w-[1240px] mx-auto px-6 mt-6 sm:-mt-[50px]">
+        <div className="bg-[#172435] rounded-[24px] px-6 sm:px-[38px] py-5 sm:py-[16px] shadow-xl">
+          {/* Mobile: 2×2 grid | sm+: single row */}
+          <div className="grid grid-cols-2 gap-x-4 gap-y-5 sm:flex sm:flex-row sm:items-center sm:justify-between sm:gap-0">
             {hero.stats.map((stat, i) => (
-              <div key={stat.label} className="flex items-center flex-1">
+              <div key={stat.label} className="flex items-center sm:flex-1">
                 <div className="flex flex-col gap-[2px]">
                   <span
-                    className="text-white text-[15px] lg:text-[18px] leading-[36px]"
+                    className="text-white text-[12px] sm:text-[15px] lg:text-[18px] leading-[1.4] sm:leading-[36px]"
                     style={{ fontFamily: "'Segoe UI', system-ui, sans-serif" }}
                   >
                     {stat.label}
                   </span>
                   <span
-                    className="text-white font-semibold text-[18px] lg:text-[24px] leading-[43px]"
+                    className="text-white font-semibold text-[15px] sm:text-[18px] lg:text-[24px] leading-[1.4] sm:leading-[43px]"
                     style={{ fontFamily: "'Segoe UI', system-ui, sans-serif" }}
                   >
                     {stat.value}

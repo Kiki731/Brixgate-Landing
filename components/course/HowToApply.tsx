@@ -36,7 +36,7 @@ export default function HowToApply({ steps, professions, eligibility }: Props) {
         {/* Left: How To Apply */}
         <div className="flex-1">
           <h2
-            className="text-[#222] text-[40px] font-medium tracking-[-0.05em] mb-2"
+            className="text-[#222] text-[26px] sm:text-[40px] font-medium tracking-[-0.05em] mb-2"
             style={{ fontFamily: "var(--font-dm-sans)" }}
           >
             How To Apply
@@ -90,7 +90,7 @@ export default function HowToApply({ steps, professions, eligibility }: Props) {
         {/* Right: Who Is This For */}
         <div className="flex-1">
           <h2
-            className="text-[#222] text-[40px] font-medium tracking-[-0.05em] mb-2"
+            className="text-[#222] text-[26px] sm:text-[40px] font-medium tracking-[-0.05em] mb-2"
             style={{ fontFamily: "var(--font-dm-sans)" }}
           >
             Who Is This Program For?

@@ -42,15 +42,24 @@ export default function PricingSection() {
   return (
     <section id="pricing" className="py-20 bg-white">
       <div className="max-w-[1280px] mx-auto px-6">
+
+        {/* ── Mobile-only plain heading ── */}
+        <h2
+          className="block lg:hidden text-[#222] text-[22px] sm:text-[32px] font-medium tracking-[-0.05em] mb-8"
+          style={{ fontFamily: "var(--font-dm-sans)" }}
+        >
+          One price. Everything included.
+        </h2>
+
         {/* gap-0 so the left blob and card are flush — no space between them */}
         <div className="flex flex-col lg:flex-row items-center gap-0 lg:justify-center">
 
-          {/* ── Left: Hero Text — height hugs content, vertically centered in row ── */}
-          <div className="w-full lg:w-auto lg:shrink-0 relative px-8 py-10">
+          {/* ── Left: Hero Text — desktop only ── */}
+          <div className="hidden lg:block lg:w-auto lg:shrink-0 relative px-8 py-10">
             {/* right corners square so it sits flush against the pricing card; left-only stroke */}
             <div className="absolute inset-0 bg-[#efefef] rounded-tl-2xl rounded-bl-2xl border-l-[6px] border-[#727272]" />
             <h2
-              className="relative z-10 text-[#1a1a1a] text-[28px] lg:text-[38px] font-medium leading-[1.2] tracking-[-0.03em] lg:whitespace-nowrap py-8"
+              className="relative z-10 text-[#1a1a1a] text-[38px] font-medium leading-[1.2] tracking-[-0.03em] whitespace-nowrap py-8"
               style={{ fontFamily: "var(--font-dm-sans)" }}
             >
               One price.<br />Everything included.

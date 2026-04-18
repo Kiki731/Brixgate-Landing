@@ -7,7 +7,7 @@ export default function OtherPrograms({ programs }: { programs: CourseLink[] }) 
     <section className="py-16 bg-white">
       <div className="max-w-[1280px] mx-auto px-6">
         <h2
-          className="text-[#222] text-[32px] font-medium tracking-[-0.05em] mb-10"
+          className="text-[#222] text-[22px] sm:text-[32px] font-medium tracking-[-0.05em] mb-10"
           style={{ fontFamily: "var(--font-dm-sans)" }}
         >
           Other Programs

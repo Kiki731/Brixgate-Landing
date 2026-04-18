@@ -10,7 +10,7 @@ export default function CourseFAQ({ faqs }: { faqs: CourseFAQItem[] }) {
     <section className="py-16 bg-[#f8fafc]">
       <div className="max-w-[1280px] mx-auto px-6">
         <h2
-          className="text-[#222] text-center text-[32px] lg:text-[40px] font-medium tracking-[-0.05em] mb-10"
+          className="text-[#222] text-center text-[22px] sm:text-[32px] lg:text-[40px] font-medium tracking-[-0.05em] mb-10"
           style={{ fontFamily: "var(--font-dm-sans)" }}
         >
           Frequently Asked Questions (FAQ)

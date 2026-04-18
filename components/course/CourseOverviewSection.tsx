@@ -41,7 +41,7 @@ function ProgramOverviewCard({ overview }: { overview: Props["programOverview"] 
     <div className="flex flex-col gap-6">
       <div className="flex flex-col gap-3">
         <h2
-          className="text-[#222] text-[40px] font-medium tracking-[-0.05em]"
+          className="text-[#222] text-[26px] sm:text-[40px] font-medium tracking-[-0.05em]"
           style={{ fontFamily: "var(--font-dm-sans)" }}
         >
           Program Overview
@@ -102,7 +102,7 @@ function SkillsCard({ skills }: { skills: string[] }) {
   return (
     <div className="bg-white border border-[#f4f4f4] rounded-[12px] p-6">
       <h2
-        className="text-[#222] text-[32px] font-medium tracking-[-0.05em] mb-5"
+        className="text-[#222] text-[22px] sm:text-[32px] font-medium tracking-[-0.05em] mb-5"
         style={{ fontFamily: "var(--font-dm-sans)" }}
       >
         Skills you&apos;ll gain
@@ -131,13 +131,13 @@ function CurriculumCard({ curriculum }: { curriculum: CurriculumData }) {
     <div id="curriculum" className="bg-white border border-[#f4f4f4] rounded-[12px] p-6 flex flex-col gap-8">
       <div className="flex flex-col gap-4">
         <h2
-          className="text-[#222] text-[32px] font-medium tracking-[-0.05em]"
+          className="text-[#222] text-[22px] sm:text-[32px] font-medium tracking-[-0.05em]"
           style={{ fontFamily: "var(--font-dm-sans)" }}
         >
           {curriculum.title}
         </h2>
         <p
-          className="text-[#727272] text-[18px] leading-[1.625]"
+          className="text-[#727272] text-[15px] sm:text-[18px] leading-[1.625]"
           style={{ fontFamily: "'Segoe UI', system-ui, sans-serif" }}
         >
           {curriculum.description}
@@ -148,7 +148,7 @@ function CurriculumCard({ curriculum }: { curriculum: CurriculumData }) {
         {/* Header row */}
         <div className="flex items-center justify-between mb-1">
           <span
-            className="text-[#222] text-[18px] font-semibold tracking-[-0.05em]"
+            className="text-[#222] text-[14px] sm:text-[18px] font-semibold tracking-[-0.05em]"
             style={{ fontFamily: "var(--font-dm-sans)" }}
           >
             Content
@@ -178,7 +178,7 @@ function CurriculumCard({ curriculum }: { curriculum: CurriculumData }) {
                     className={`w-4 h-4 text-[#474dc1] shrink-0 transition-transform ${isOpen(i) ? "rotate-180" : ""}`}
                   />
                   <span
-                    className="text-[#031124] text-[18px] font-semibold text-left"
+                    className="text-[#031124] text-[14px] sm:text-[18px] font-semibold text-left"
                     style={{ fontFamily: "'Segoe UI', system-ui, sans-serif" }}
                   >
                     {item}
@@ -253,7 +253,7 @@ function ContactCard({ contact }: { contact: Props["contact"] }) {
       {/* ── Contact Us header — fully rounded standalone card ── */}
       <div className="bg-[#00435d] rounded-[12px] px-5 py-5 flex flex-col gap-2">
         <h3
-          className="text-white text-[28px] font-medium tracking-[-0.075em]"
+          className="text-white text-[20px] sm:text-[28px] font-medium tracking-[-0.075em]"
           style={{ fontFamily: "var(--font-dm-sans)" }}
         >
           Contact Us
@@ -347,7 +347,7 @@ function CertificateCard() {
     <div className="bg-white border border-[#f2f2f2] rounded-[12px] shadow-[0px_0px_20px_0px_rgba(0,0,0,0.1)] p-5 flex flex-col gap-4">
       <div className="flex flex-col gap-2">
         <h3
-          className="text-[#222] text-[32px] font-medium tracking-[-0.075em] leading-tight"
+          className="text-[#222] text-[22px] sm:text-[32px] font-medium tracking-[-0.075em] leading-tight"
           style={{ fontFamily: "var(--font-dm-sans)" }}
         >
           Earn Professional Certificate
