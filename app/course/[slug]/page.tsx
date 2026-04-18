@@ -13,8 +13,9 @@ import PortfolioProjects from "@/components/course/PortfolioProjects";
 import ProgramCohorts from "@/components/course/ProgramCohorts";
 import CourseTestimonials from "@/components/course/CourseTestimonials";
 import CourseFAQ from "@/components/course/CourseFAQ";
+import OurPractitioners from "@/components/course/OurPractitioners";
 import OtherPrograms from "@/components/course/OtherPrograms";
-import EnrollSection from "@/components/course/EnrollSection";
+import Footer from "@/components/Footer";
 
 // Pre-render all known course slugs at build time → fully static, CDN-cached
 export function generateStaticParams() {
@@ -77,10 +78,11 @@ export default async function CoursePage({
       />
       <PortfolioProjects projects={course.portfolioProjects} />
       <ProgramCohorts cohorts={course.cohorts} />
+      <OurPractitioners practitioners={course.practitioners} />
       <CourseTestimonials testimonials={course.testimonials} />
       <CourseFAQ faqs={course.faqs} />
       <OtherPrograms programs={otherPrograms} />
-      <EnrollSection courseName={course.hero.title} />
+      <Footer />
     </main>
   );
 }
