@@ -65,6 +65,10 @@ export default function Navbar() {
           >
             Sign in
           </a> */}
+            <p className="px-3 py-2 text-sm text-white/80">
+            Phone: +234 7088093620
+          </p>
+
           <a
             href="#"
             onClick={(e) => { e.preventDefault(); scrollToForm(); }}

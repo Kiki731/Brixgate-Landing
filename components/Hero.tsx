@@ -79,7 +79,7 @@ export default function Hero() {
         {/* ── Right Column: 1440px+ only, inside container ── */}
         <div className="hidden [@media(min-width:1550px)]:flex flex-1 items-end justify-center anim-slide-right delay-300">
           <Image
-            src="/images/Responsivenesshero.png"
+            src="/images/Heros-Image.png"
             alt="Applied Artificial Intelligence — Cohort 1.2"
             width={880}
             height={758}
