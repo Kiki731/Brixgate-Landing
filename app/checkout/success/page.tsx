@@ -10,54 +10,78 @@ const segoeUi = { fontFamily: "'Segoe UI', system-ui, sans-serif" } as const;
 const inter = { fontFamily: "'Inter', sans-serif" } as const;
 
 const PORTAL_URL = "https://www.brixgate.com/portal";
-const COUNTDOWN_START = 5;
+const REDIRECT_COUNTDOWN = 5;
+const VERIFY_TIMEOUT = 20;   // seconds to keep trying before giving up
+const RETRY_INTERVAL = 4000; // ms between retries
 const PROXY = "/api/brixgate";
 
 function SuccessContent() {
   const searchParams = useSearchParams();
   const reference = searchParams.get("reference") ?? searchParams.get("trxref") ?? "";
-  const [countdown, setCountdown] = useState(COUNTDOWN_START);
-  const [verifying, setVerifying] = useState(true);
-  const [verified, setVerified] = useState(false);
-  const [verifyError, setVerifyError] = useState("");
 
-  // Step 1 — verify the payment with the backend
+  type Phase = "verifying" | "success" | "failed";
+  const [phase, setPhase] = useState<Phase>("verifying");
+  const [verifyCountdown, setVerifyCountdown] = useState(VERIFY_TIMEOUT);
+  const [redirectCountdown, setRedirectCountdown] = useState(REDIRECT_COUNTDOWN);
+
+  // ── Verification with retries ──────────────────────────────────────────────
   useEffect(() => {
-    if (!reference) {
-      setVerifying(false);
-      setVerifyError("No payment reference found.");
-      return;
-    }
-    const verify = async () => {
+    if (!reference) { setPhase("failed"); return; }
+
+    const token = sessionStorage.getItem("brix_token") ?? "";
+    let cancelled = false;
+    let attempts = 0;
+    const maxAttempts = Math.ceil((VERIFY_TIMEOUT * 1000) / RETRY_INTERVAL);
+
+    const tryVerify = async () => {
       try {
         const path = `payments/requery/${encodeURIComponent(reference)}`;
-        const res = await fetch(`${PROXY}?path=${encodeURIComponent(path)}`);
-        if (!res.ok) throw new Error(`Verification failed (${res.status})`);
-        setVerified(true);
-      } catch (err: any) {
-        setVerifyError(err.message ?? "Verification failed.");
-      } finally {
-        setVerifying(false);
+        const headers: Record<string, string> = {};
+        if (token) headers["Authorization"] = `Bearer ${token}`;
+        const res = await fetch(`${PROXY}?path=${encodeURIComponent(path)}`, { headers });
+        if (!res.ok) throw new Error(`${res.status}`);
+        if (!cancelled) {
+          sessionStorage.removeItem("brix_token");
+          setPhase("success");
+        }
+      } catch {
+        attempts++;
+        if (!cancelled && attempts < maxAttempts) {
+          setTimeout(tryVerify, RETRY_INTERVAL);
+        } else if (!cancelled) {
+          setPhase("failed");
+        }
       }
     };
-    verify();
+
+    tryVerify();
+    return () => { cancelled = true; };
   }, [reference]);
 
-  // Step 2 — start countdown only after verified
+  // ── Verifying countdown (visual only) ─────────────────────────────────────
   useEffect(() => {
-    if (!verified) return;
-    const interval = setInterval(() => {
-      setCountdown((c) => {
+    if (phase !== "verifying") return;
+    const t = setInterval(() => {
+      setVerifyCountdown((c) => (c > 0 ? c - 1 : 0));
+    }, 1000);
+    return () => clearInterval(t);
+  }, [phase]);
+
+  // ── Redirect countdown after success ──────────────────────────────────────
+  useEffect(() => {
+    if (phase !== "success") return;
+    const t = setInterval(() => {
+      setRedirectCountdown((c) => {
         if (c <= 1) {
-          clearInterval(interval);
+          clearInterval(t);
           window.location.href = PORTAL_URL;
           return 0;
         }
         return c - 1;
       });
     }, 1000);
-    return () => clearInterval(interval);
-  }, [verified]);
+    return () => clearInterval(t);
+  }, [phase]);
 
   return (
     <div
@@ -129,23 +153,48 @@ function SuccessContent() {
           <div className="flex-1 flex flex-col items-center justify-center px-5 py-8 lg:px-[48px] lg:py-[40px]">
 
             {/* ── Verifying state ── */}
-            {verifying && (
-              <div className="flex flex-col items-center gap-4 text-center">
-                <Loader2 className="w-10 h-10 animate-spin text-[#d51715]" />
-                <p className="text-[#475569] text-sm" style={inter}>Verifying your payment…</p>
+            {phase === "verifying" && (
+              <div className="flex flex-col items-center gap-6 text-center w-full max-w-[490px]">
+                <Image src="/images/logo2.png" alt="Brixgate" width={54} height={54} className="object-contain flex-shrink-0" />
+                <div className="flex flex-col gap-[10px] items-center">
+                  <Loader2 className="w-10 h-10 animate-spin text-[#d51715]" />
+                  <h2 className="font-bold text-[#111827]" style={{ ...dmSans, fontSize: "clamp(22px, 4vw, 28px)", lineHeight: 1.2 }}>
+                    Verifying your payment…
+                  </h2>
+                  <p className="text-[#475569] text-sm" style={segoeUi}>
+                    Please hold on while we confirm your payment. This usually takes a few seconds.
+                  </p>
+                </div>
+                <div className="bg-[#f9f9f9] rounded-[12px] p-[20px] w-full flex flex-col gap-3">
+                  {reference && (
+                    <div className="flex items-center justify-between text-sm" style={segoeUi}>
+                      <span className="text-[#727272]">Reference</span>
+                      <span className="text-[#222] font-medium font-mono tracking-wide">{reference}</span>
+                    </div>
+                  )}
+                  <div className="flex items-center justify-between text-sm" style={segoeUi}>
+                    <span className="text-[#727272]">Status</span>
+                    <span className="text-[#f59e0b] font-semibold">Verifying…</span>
+                  </div>
+                </div>
+                <p className="text-[#9ca3af] text-sm" style={inter}>
+                  Timing out in {verifyCountdown}s
+                </p>
               </div>
             )}
 
-            {/* ── Error state ── */}
-            {!verifying && !verified && (
-              <div className="flex flex-col items-center gap-4 text-center w-full max-w-[490px]">
+            {/* ── Payment failed state ── */}
+            {phase === "failed" && (
+              <div className="flex flex-col items-center gap-5 text-center w-full max-w-[490px]">
                 <Image src="/images/logo2.png" alt="Brixgate" width={54} height={54} className="object-contain flex-shrink-0" />
-                <h2 className="font-bold text-[#111827]" style={{ ...dmSans, fontSize: "clamp(22px, 4vw, 30px)", lineHeight: 1.2 }}>
-                  Verification Failed
-                </h2>
-                <p className="text-[#475569] text-sm" style={segoeUi}>
-                  We couldn&apos;t confirm your payment automatically. Please contact support with your reference below.
-                </p>
+                <div className="flex flex-col gap-[10px] items-center">
+                  <h2 className="font-bold text-[#111827]" style={{ ...dmSans, fontSize: "clamp(22px, 4vw, 30px)", lineHeight: 1.2 }}>
+                    Payment Not Confirmed
+                  </h2>
+                  <p className="text-[#475569] text-sm" style={segoeUi}>
+                    We were unable to confirm your payment. If you were charged, please contact our support team with your reference number below and we&apos;ll sort it out immediately.
+                  </p>
+                </div>
                 {reference && (
                   <div className="bg-[#f9f9f9] rounded-[12px] p-[20px] w-full">
                     <div className="flex items-center justify-between text-sm" style={segoeUi}>
@@ -154,15 +203,21 @@ function SuccessContent() {
                     </div>
                   </div>
                 )}
-                {verifyError && <p className="text-[#d51715] text-xs" style={inter}>{verifyError}</p>}
+                <a
+                  href="mailto:we@brixgate.com"
+                  className="w-full h-[44px] bg-[#d51715] hover:bg-[#b8111e] transition-colors rounded-[8px] flex items-center justify-center"
+                >
+                  <span className="text-white text-sm font-semibold" style={{ ...dmSans, fontVariationSettings: "'opsz' 14" }}>
+                    Contact Support
+                  </span>
+                </a>
               </div>
             )}
 
-            {/* ── Verified / success state ── */}
-            {!verifying && verified && (
+            {/* ── Success state ── */}
+            {phase === "success" && (
               <div className="flex flex-col items-center gap-5 lg:gap-[24px] w-full max-w-[490px]">
                 <Image src="/images/logo2.png" alt="Brixgate" width={54} height={54} className="object-contain flex-shrink-0" />
-
                 <div className="flex flex-col gap-[10px] items-center text-center w-full">
                   <h2
                     className="font-bold text-[#111827] w-full"
@@ -175,7 +230,6 @@ function SuccessContent() {
                     unlocked, and your journey starts right now.
                   </p>
                 </div>
-
                 <div className="bg-[#f9f9f9] rounded-[12px] p-[20px] w-full flex flex-col gap-3">
                   {reference && (
                     <div className="flex items-center justify-between text-sm" style={segoeUi}>
@@ -188,7 +242,6 @@ function SuccessContent() {
                     <span className="text-[#16a34a] font-semibold">Confirmed</span>
                   </div>
                 </div>
-
                 <div className="flex flex-col gap-[10px] w-full">
                   <a
                     href={PORTAL_URL}
@@ -199,7 +252,7 @@ function SuccessContent() {
                     </span>
                   </a>
                   <p className="text-center text-[#9ca3af] text-sm" style={inter}>
-                    You will be redirected in…{countdown}s
+                    Redirecting you in {redirectCountdown}s…
                   </p>
                 </div>
               </div>

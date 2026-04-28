@@ -103,7 +103,10 @@ function CheckoutForm() {
 
       if (!checkoutUrl) throw new Error("No checkout URL returned. Please contact support.");
 
-      // Step 3 — Redirect to the Paystack-hosted checkout page
+      // Step 3 — Persist token so the success page can verify the payment
+      if (token) sessionStorage.setItem("brix_token", token);
+
+      // Step 4 — Redirect to the Paystack-hosted checkout page
       window.location.href = checkoutUrl;
     } catch (err: any) {
       setError(err.message || "Something went wrong. Please try again.");
