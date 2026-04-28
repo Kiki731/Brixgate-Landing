@@ -40,8 +40,19 @@ function SuccessContent() {
         if (token) headers["Authorization"] = `Bearer ${token}`;
         const res = await fetch(`${PROXY}?path=${encodeURIComponent(path)}`, { headers });
         if (!res.ok) throw new Error(`${res.status}`);
+        const data = await res.json();
+        // Extract the student token returned after payment verification
+        const studentToken: string =
+          data?.data?.access_token ??
+          data?.data?.token ??
+          data?.data?.accessToken ??
+          data?.access_token ??
+          data?.token ??
+          "";
         if (!cancelled) {
           sessionStorage.removeItem("brix_token");
+          // Store student token so the redirect can use it
+          if (studentToken) sessionStorage.setItem("brix_student_token", studentToken);
           setPhase("success");
         }
       } catch {
@@ -74,7 +85,12 @@ function SuccessContent() {
       setRedirectCountdown((c) => {
         if (c <= 1) {
           clearInterval(t);
-          window.location.href = PORTAL_URL;
+          const studentToken = sessionStorage.getItem("brix_student_token") ?? "";
+          sessionStorage.removeItem("brix_student_token");
+          const dest = studentToken
+            ? `${PORTAL_URL}/auth/callback?token=${encodeURIComponent(studentToken)}`
+            : PORTAL_URL;
+          window.location.href = dest;
           return 0;
         }
         return c - 1;
@@ -243,14 +259,21 @@ function SuccessContent() {
                   </div>
                 </div>
                 <div className="flex flex-col gap-[10px] w-full">
-                  <a
-                    href={PORTAL_URL}
+                  <button
+                    onClick={() => {
+                      const studentToken = sessionStorage.getItem("brix_student_token") ?? "";
+                      sessionStorage.removeItem("brix_student_token");
+                      const dest = studentToken
+                        ? `${PORTAL_URL}/auth/callback?token=${encodeURIComponent(studentToken)}`
+                        : PORTAL_URL;
+                      window.location.href = dest;
+                    }}
                     className="w-full h-[44px] bg-[#d51715] hover:bg-[#b8111e] transition-colors rounded-[8px] flex items-center justify-center"
                   >
                     <span className="text-white text-sm font-semibold" style={{ ...dmSans, fontVariationSettings: "'opsz' 14" }}>
                       Go to My Dashboard
                     </span>
-                  </a>
+                  </button>
                   <p className="text-center text-[#9ca3af] text-sm" style={inter}>
                     Redirecting you in {redirectCountdown}s…
                   </p>
