@@ -9,7 +9,7 @@ const dmSans = { fontFamily: "'DM Sans', sans-serif" } as const;
 const segoeUi = { fontFamily: "'Segoe UI', system-ui, sans-serif" } as const;
 const inter = { fontFamily: "'Inter', sans-serif" } as const;
 
-const PORTAL_URL = "https://portal.brixgate.com";
+const PORTAL_URL = "https://www.brixgate.com/portal";
 const COUNTDOWN_START = 5;
 const PROXY = "/api/brixgate";
 

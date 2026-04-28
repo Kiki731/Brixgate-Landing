@@ -40,7 +40,7 @@ function CheckoutForm() {
       setCountdown((c) => {
         if (c <= 1) {
           clearInterval(interval);
-          window.location.href = "https://portal.brixgate.com";
+          window.location.href = "https://www.brixgate.com/portal";
           return 0;
         }
         return c - 1;
