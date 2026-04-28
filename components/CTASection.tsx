@@ -53,7 +53,7 @@ export default function CTASection() {
               alt="Join the next cohort"
               width={460}
               height={480}
-              className="relative z-10 w-full max-w-[460px] object-contain"
+              className="relative z-10 w-full max-w-[460px] object-contain rounded-br-[40px]"
             />
           </div>
         </div>

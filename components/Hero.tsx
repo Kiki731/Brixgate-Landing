@@ -90,10 +90,10 @@ export default function Hero() {
 
       </div>
 
-      {/* Below 1440px: pinned to right edge of screen */}
-      <div className="hidden lg:block [@media(min-width:1550px)]:hidden absolute right-0 bottom-[60px] z-10 anim-slide-right delay-300">
+      {/* Below 1550px: pinned to right edge of screen */}
+      <div className="hidden lg:block [@media(min-width:1550px)]:hidden absolute right-0 bottom-[120px] z-10 anim-slide-right delay-300">
         <Image
-          src="/images/Responsivenesshero.png"
+          src="/images/Heros-Image.png"
           alt="Applied Artificial Intelligence — Cohort 1.2"
           width={740}
           height={637}

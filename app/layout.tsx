@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, DM_Sans, Montserrat, Mooli } from "next/font/google";
 import "./globals.css";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -43,7 +44,10 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${dmSans.variable} ${montserrat.variable} ${mooli.variable} antialiased`}
     >
-      <body className="min-h-screen bg-white">{children}</body>
+      <body className="min-h-screen bg-white">
+        {children}
+        <WhatsAppButton />
+      </body>
     </html>
   );
 }

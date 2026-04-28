@@ -3,7 +3,18 @@ import Image from "next/image";
 import { Calendar, Users, Clock, Star } from "lucide-react";
 import type { CourseCohort } from "@/lib/courses-data";
 
-export default function ProgramCohorts({ cohorts }: { cohorts: CourseCohort[] }) {
+interface Props {
+  cohorts: CourseCohort[];
+  /** Course slug — used to build the checkout URL */
+  slug?: string;
+  /** API program ID — passed as query param so checkout can initiate payment correctly */
+  programId?: number | null;
+}
+
+export default function ProgramCohorts({ cohorts, slug, programId }: Props) {
+  const checkoutHref = slug
+    ? `/checkout?program=${slug}${programId ? `&id=${programId}` : ""}`
+    : "#enroll";
   return (
     <section className="py-16 bg-[#f8fafc]">
       <div className="max-w-[1280px] mx-auto px-6">
@@ -101,11 +112,7 @@ export default function ProgramCohorts({ cohorts }: { cohorts: CourseCohort[] })
                     </div>
                   ) : (
                     <a
-                      href="#enroll"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        document.getElementById("enroll")?.scrollIntoView({ behavior: "smooth" });
-                      }}
+                      href={checkoutHref}
                       className="flex items-center justify-center gap-2 bg-[#d51420] hover:bg-[#b8111e] transition-colors text-white font-semibold text-sm px-5 py-3 rounded-xl w-full"
                     >
                       {c.cta} →

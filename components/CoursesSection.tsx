@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import { BookOpen, Users, ArrowRight, ChevronRight } from "lucide-react";
+import { useRef, useState } from "react";
 import { useInView } from "@/hooks/useInView";
 import { scrollToForm } from "@/lib/scrollToForm";
 
@@ -87,9 +88,9 @@ const courses = [
 
 function CourseCard({ course }: { course: (typeof courses)[0] }) {
   return (
-    <div className="bg-white rounded-xl overflow-hidden border border-gray-100 shadow-sm flex-shrink-0 w-[289px] scroll-anim hover-lift">
+    <div className="bg-white rounded-xl overflow-hidden border border-gray-100 shadow-sm flex-shrink-0 w-[289px] scroll-anim hover-lift h-full flex flex-col">
       {/* Thumbnail */}
-      <div className="relative h-[151px]">
+      <div className="relative h-[151px] flex-shrink-0">
         <Image src={course.image} alt={course.title} fill className="object-cover" />
         {/* <span className="absolute top-2.5 left-2.5 bg-[#ff2949] text-white text-[10px] font-semibold px-2 py-0.5 rounded flex items-center gap-1 z-10">
           <span className="w-1.5 h-1.5 rounded-full bg-[#1ed515]" />
@@ -98,8 +99,8 @@ function CourseCard({ course }: { course: (typeof courses)[0] }) {
       </div>
 
       {/* Content */}
-      <div className="p-4">
-        <span className="inline-flex items-center bg-[#0f172a] text-white text-[10px] font-semibold px-2 py-1 rounded mb-3 ">
+      <div className="p-4 flex flex-col flex-1">
+        <span className="inline-flex items-center bg-[#0f172a] text-white text-[10px] font-semibold px-2 py-1 rounded mb-3 self-start">
           {course.track}
         </span>
 
@@ -146,8 +147,8 @@ function CourseCard({ course }: { course: (typeof courses)[0] }) {
           </span>
         </div>
 
-        {/* Footer Row */}
-        <div className="flex items-center justify-between border-t border-gray-100 pt-3">
+        {/* Footer Row — mt-auto pushes it to bottom regardless of content height */}
+        <div className="flex items-center justify-between border-t border-gray-100 pt-3 mt-auto">
           {/* <span className="text-[#222] font-semibold text-sm">FREE</span> */}
           <button onClick={scrollToForm} className="bg-[#d51420] hover:bg-[#b8111e] transition-colors text-white text-sm font-medium px-3 py-1.5 rounded-md flex items-center gap-1">
             Join the Waitlist
@@ -158,8 +159,36 @@ function CourseCard({ course }: { course: (typeof courses)[0] }) {
   );
 }
 
+const DOT_COUNT = 4;
+
 export default function CoursesSection() {
   const ref = useInView();
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  // Map scroll progress 0→1 linearly across DOT_COUNT dots
+  // so the last dot always activates at the true end of scroll
+  const handleScroll = () => {
+    if (!scrollRef.current) return;
+    const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
+    const maxScroll = scrollWidth - clientWidth;
+    const index = maxScroll > 0
+      ? Math.round((scrollLeft / maxScroll) * (DOT_COUNT - 1))
+      : 0;
+    setActiveIndex(index);
+  };
+
+  const scrollTo = (i: number) => {
+    if (!scrollRef.current) return;
+    const { scrollWidth, clientWidth } = scrollRef.current;
+    const maxScroll = scrollWidth - clientWidth;
+    scrollRef.current.scrollTo({
+      left: (i / (DOT_COUNT - 1)) * maxScroll,
+      behavior: "smooth",
+    });
+    setActiveIndex(i);
+  };
+
   return (
     <section id="courses-section" className="py-16 bg-white"><div ref={ref}>
       <div className="max-w-[1280px] mx-auto px-6">
@@ -178,10 +207,36 @@ export default function CoursesSection() {
           <span className="text-[#4749c1] font-semibold text-xl">New courses</span>
         </div>
 
-        {/* Course Cards — always horizontal scroll */}
-        <div className="flex gap-5 overflow-x-auto pb-4 scrollbar-hide">
+        {/* Course Cards
+            - pt-3 pb-5: padding so hover-lift (translateY -4px) isn't clipped by overflow-y-hidden
+            - snap-proximity: lighter snap — feels responsive, not sticky
+            - touch-action pan-x: locks touch to horizontal only, kills vertical shakiness */}
+        <div
+          ref={scrollRef}
+          onScroll={handleScroll}
+          className="flex gap-5 overflow-x-auto overflow-y-hidden scrollbar-hide snap-x snap-proximity pt-3 pb-5"
+          style={{ touchAction: "pan-x" }}
+        >
           {courses.map((c) => (
-            <CourseCard key={c.title} course={c} />
+            <div key={c.title} className="snap-start flex-shrink-0 self-stretch">
+              <CourseCard course={c} />
+            </div>
+          ))}
+        </div>
+
+        {/* 4 dot indicators — mapped linearly to scroll progress */}
+        <div className="flex items-center justify-center gap-2 mt-4">
+          {Array.from({ length: DOT_COUNT }).map((_, i) => (
+            <button
+              key={i}
+              onClick={() => scrollTo(i)}
+              aria-label={`Scroll to position ${i + 1}`}
+              className={`rounded-full transition-all duration-300 ${
+                i === activeIndex
+                  ? "w-5 h-2 bg-[#4749c1]"
+                  : "w-2 h-2 bg-[#d1d5db] hover:bg-[#4749c1]/50"
+              }`}
+            />
           ))}
         </div>
       </div>

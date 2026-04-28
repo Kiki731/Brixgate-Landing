@@ -65,9 +65,12 @@ export default function Navbar() {
           >
             Sign in
           </a> */}
-            <p className="px-3 py-2 text-sm text-white/80">
+            <a
+            href="tel:+2347088093620"
+            className="px-3 py-2 text-sm text-white/80 hover:text-white transition-colors"
+          >
             Phone: +234 7088093620
-          </p>
+          </a>
 
           <a
             href="#"

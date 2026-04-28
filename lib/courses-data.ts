@@ -590,23 +590,23 @@ export const courses: CourseData[] = [
     faqs: [
       {
         q: "Do I need to already work in DevOps & Cloud Computing?",
-        a: "Yes — this program is designed for working DevOps and cloud professionals who want to integrate AI into their existing workflows. You should already have a basic understanding of cloud concepts, CI/CD, or infrastructure tooling. We don't teach DevOps basics; we teach you how AI changes what you can do with what you already know.",
+        a: "Yes, this program is designed for working DevOps and cloud professionals who want to integrate AI into their existing workflows. You should already have a basic understanding of cloud concepts, CI/CD, or infrastructure tooling. We don't teach DevOps basics; we teach you how AI changes what you can do with what you already know.",
       },
       {
         q: 'What does "Live Instructor-Led" mean exactly?',
-        a: "Every session runs live online via video — not pre-recorded. You'll interact directly with the instructor, ask questions in real time, and work through exercises with your cohort. Sessions are also recorded so you can review them, but the primary experience is live.",
+        a: "Sessions are delivered live via video with a Brixgate-vetted practitioner. They are recorded so you can rewatch, but live attendance is expected. The practitioner is available for questions during and between sessions.",
       },
       {
         q: "Will I need to pay for AI tools on top of the fee?",
-        a: "No. The program is structured around tools with free tiers or open-source options. Ollama (local AI), Terraform free tier, open-source Prometheus and Grafana, and free-tier cloud accounts are used throughout. Where a paid tool is demonstrated, a free alternative is always provided.",
+        a: "The practitioner will confirm the final toolkit before the cohort starts. Where possible, tools that are free and open-source or locally deployable will be prioritised to avoid additional costs and data security concerns. Any tools that require paid licenses will be communicated in advance.",
       },
       {
         q: "Is the certificate recognised by employers?",
-        a: "The certificate is issued by Brixgate and tied to a verifiable capstone project. It's designed to be portfolio-evidence, not just a participation badge. Employers in the DevOps and cloud space increasingly value demonstrated capability over credentials — the project artefact is the real differentiator.",
+        a: "The certificate is issued by Brixgate and is tied to your capstone project artefact, which demonstrates practical applied ability rather than mere attendance. Brixgate is actively building its recognition as the standard for AI-ready professionals across Africa.",
       },
       {
         q: "Can my company pay on my behalf?",
-        a: "Yes. We can issue an invoice to your company or employer. Contact us at we@brixgate.com with your company's billing details and we'll arrange it. Corporate group enrollments (3+ seats) also receive a discount.",
+        a: "Yes. Brixgate can issue an invoice for corporate payments. Reach out before enrolling if your finance team requires a purchase order or formal invoice.",
       },
     ],
   },

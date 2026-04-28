@@ -508,7 +508,6 @@ export default function NewWaitlistSection() {
                           className="w-full border border-gray-200 rounded-lg px-4 h-12 text-sm outline-none focus:border-[#172435] transition-colors text-gray-400 appearance-none bg-white pr-10"
                         >
                           <option value="" disabled>Select a program</option>
-                          <option>General AI</option>
                           <option>AI in Data Analytics</option>
                           <option>AI in Cyber Security & Intelligence</option>
                           <option>AI in Software Engineering</option>

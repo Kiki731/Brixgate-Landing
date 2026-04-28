@@ -10,7 +10,7 @@ interface HeroData {
   stats: CourseStat[];
 }
 
-export default function CourseHero({ hero }: { hero: HeroData }) {
+export default function CourseHero({ hero, checkoutHref }: { hero: HeroData; checkoutHref?: string }) {
   const scrollToEnroll = () => {
     document.getElementById("enroll")?.scrollIntoView({ behavior: "smooth" });
   };
@@ -49,16 +49,29 @@ export default function CourseHero({ hero }: { hero: HeroData }) {
             </p>
 
             <div className="flex flex-wrap items-center gap-5 mt-2">
-              <button
-                onClick={scrollToEnroll}
-                className="flex items-center gap-2 bg-[#d51520] text-white font-semibold text-sm px-5 py-2.5 rounded-lg sm:gap-2.5 sm:font-medium sm:text-base sm:px-8 sm:py-3.5 sm:rounded-[5.4px] sm:h-[52px]"
-                style={{ fontFamily: "'Inter', sans-serif" }}
-              >
-                Enroll Now - Secure Your Spot
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                  <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </button>
+              {checkoutHref ? (
+                <a
+                  href={checkoutHref}
+                  className="flex items-center gap-2 bg-[#d51520] text-white font-semibold text-sm px-5 py-2.5 rounded-lg sm:gap-2.5 sm:font-medium sm:text-base sm:px-8 sm:py-3.5 sm:rounded-[5.4px] sm:h-[52px]"
+                  style={{ fontFamily: "'Inter', sans-serif" }}
+                >
+                  Enroll Now - Secure Your Spot
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </a>
+              ) : (
+                <button
+                  onClick={scrollToEnroll}
+                  className="flex items-center gap-2 bg-[#d51520] text-white font-semibold text-sm px-5 py-2.5 rounded-lg sm:gap-2.5 sm:font-medium sm:text-base sm:px-8 sm:py-3.5 sm:rounded-[5.4px] sm:h-[52px]"
+                  style={{ fontFamily: "'Inter', sans-serif" }}
+                >
+                  Enroll Now - Secure Your Spot
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </button>
+              )}
               <button
                 onClick={scrollToCurriculum}
                 className="flex items-center justify-center border border-[#222] text-[#222] font-semibold text-sm px-5 py-2.5 rounded-lg sm:font-medium sm:text-base sm:px-8 sm:py-3.5 sm:rounded-[5.4px] sm:h-[52px]"

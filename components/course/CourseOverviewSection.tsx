@@ -434,11 +434,7 @@ function NeedAssistanceSidebar() {
       {/* CTA button */}
       <div className="relative z-10 mt-6">
         <a
-          href="#enroll"
-          onClick={(e) => {
-            e.preventDefault();
-            document.getElementById("enroll")?.scrollIntoView({ behavior: "smooth" });
-          }}
+          href="tel:+2347088093620"
           className="inline-flex items-center justify-center bg-white text-[#00435d] text-[14px] font-semibold px-5 py-2.5 rounded-[6px] hover:bg-gray-100 transition-colors"
           style={{ fontFamily: "'Inter', sans-serif" }}
         >

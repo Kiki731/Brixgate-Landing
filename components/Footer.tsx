@@ -47,15 +47,15 @@ export default function Footer() {
   return (
     <footer className="bg-[#222]">
       <div className="max-w-[1280px] mx-auto px-6 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div className="flex flex-col items-center text-center gap-6">
           {/* Brand Column */}
-          <div className="lg:col-span-1">
-            <a href="#" className="inline-block mb-3">
+          <div className="flex flex-col items-center gap-4">
+            <a href="#" className="inline-block">
               <span className="text-white font-bold text-2xl font-[family-name:var(--font-inter)] tracking-tight">
                 BRIX<span className="font-light">GATE</span>
               </span>
             </a>
-            <p className="text-white text-[14px] lg:text-base leading-relaxed mb-6">
+            <p className="text-white text-[14px] lg:text-base leading-relaxed max-w-[480px]">
               The global standard for talent excellence. Building and certifying professionals who
               deliver with capability, character, and conviction.
             </p>
@@ -123,7 +123,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-white/10 mt-12 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="border-t border-white/10 mt-8 pt-6 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 w-full">
           <p className="text-white text-sm">© 2026 BrixGate. All rights reserved.</p>
           <div className="flex items-center gap-6">
             <a href="#" className="text-white text-sm hover:text-gray-300 transition-colors">
