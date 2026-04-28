@@ -40,19 +40,7 @@ function SuccessContent() {
         if (token) headers["Authorization"] = `Bearer ${token}`;
         const res = await fetch(`${PROXY}?path=${encodeURIComponent(path)}`, { headers });
         if (!res.ok) throw new Error(`${res.status}`);
-        const data = await res.json();
-        // Extract the student token returned after payment verification
-        const studentToken: string =
-          data?.data?.access_token ??
-          data?.data?.token ??
-          data?.data?.accessToken ??
-          data?.access_token ??
-          data?.token ??
-          "";
         if (!cancelled) {
-          sessionStorage.removeItem("brix_token");
-          // Store student token so the redirect can use it
-          if (studentToken) sessionStorage.setItem("brix_student_token", studentToken);
           setPhase("success");
         }
       } catch {
@@ -85,10 +73,10 @@ function SuccessContent() {
       setRedirectCountdown((c) => {
         if (c <= 1) {
           clearInterval(t);
-          const studentToken = sessionStorage.getItem("brix_student_token") ?? "";
-          sessionStorage.removeItem("brix_student_token");
-          const dest = studentToken
-            ? `${PORTAL_URL}/auth/callback?token=${encodeURIComponent(studentToken)}`
+          const token = sessionStorage.getItem("brix_token") ?? "";
+          sessionStorage.removeItem("brix_token");
+          const dest = token
+            ? `${PORTAL_URL}/auth/callback?token=${encodeURIComponent(token)}`
             : PORTAL_URL;
           window.location.href = dest;
           return 0;
@@ -261,10 +249,10 @@ function SuccessContent() {
                 <div className="flex flex-col gap-[10px] w-full">
                   <button
                     onClick={() => {
-                      const studentToken = sessionStorage.getItem("brix_student_token") ?? "";
-                      sessionStorage.removeItem("brix_student_token");
-                      const dest = studentToken
-                        ? `${PORTAL_URL}/auth/callback?token=${encodeURIComponent(studentToken)}`
+                      const token = sessionStorage.getItem("brix_token") ?? "";
+                      sessionStorage.removeItem("brix_token");
+                      const dest = token
+                        ? `${PORTAL_URL}/auth/callback?token=${encodeURIComponent(token)}`
                         : PORTAL_URL;
                       window.location.href = dest;
                     }}
