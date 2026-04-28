@@ -30,7 +30,7 @@ function SuccessContent() {
     }
     const verify = async () => {
       try {
-        const path = `payments/verify?reference=${encodeURIComponent(reference)}`;
+        const path = `payments/requery/${encodeURIComponent(reference)}`;
         const res = await fetch(`${PROXY}?path=${encodeURIComponent(path)}`);
         if (!res.ok) throw new Error(`Verification failed (${res.status})`);
         setVerified(true);
