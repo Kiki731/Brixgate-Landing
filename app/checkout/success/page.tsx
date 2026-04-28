@@ -10,9 +10,9 @@ const segoeUi = { fontFamily: "'Segoe UI', system-ui, sans-serif" } as const;
 const inter = { fontFamily: "'Inter', sans-serif" } as const;
 
 const PORTAL_URL = "https://www.brixgate.com/portal";
-const REDIRECT_COUNTDOWN = 5;
-const VERIFY_TIMEOUT = 20;   // seconds to keep trying before giving up
-const RETRY_INTERVAL = 4000; // ms between retries
+const REDIRECT_COUNTDOWN = 3;
+const VERIFY_TIMEOUT = 10;   // seconds to keep trying before giving up
+const RETRY_INTERVAL = 2000; // ms between retries
 const PROXY = "/api/brixgate";
 
 function SuccessContent() {
