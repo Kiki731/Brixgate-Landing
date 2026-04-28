@@ -9,7 +9,7 @@ const dmSans = { fontFamily: "'DM Sans', sans-serif" } as const;
 const segoeUi = { fontFamily: "'Segoe UI', system-ui, sans-serif" } as const;
 const inter = { fontFamily: "'Inter', sans-serif" } as const;
 
-const PORTAL_URL = "https://www.brixgate.com/portal";
+const PORTAL_URL = "https://portal.brixgate.com";
 const REDIRECT_COUNTDOWN = 3;
 const VERIFY_TIMEOUT = 10;   // seconds to keep trying before giving up
 const RETRY_INTERVAL = 2000; // ms between retries
