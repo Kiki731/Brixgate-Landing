@@ -61,9 +61,20 @@ function CheckoutForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name: name.trim(), email: email.trim() }),
       });
-      if (!ar.ok) throw new Error("Failed to register. Please try again.");
 
       const applicantData = await ar.json();
+
+      if (!ar.ok) {
+        const apiMessage: string =
+          applicantData?.message ??
+          applicantData?.error ??
+          applicantData?.data?.message ??
+          "";
+        if (ar.status === 422 || apiMessage.toLowerCase().includes("exist") || apiMessage.toLowerCase().includes("taken")) {
+          throw new Error("This email is already registered. Please use a different email or go directly to your portal to log in.");
+        }
+        throw new Error(apiMessage || "Failed to register. Please try again.");
+      }
       // Token lives at data.access_token (confirmed against live API)
       const token: string =
         applicantData?.data?.access_token ??
