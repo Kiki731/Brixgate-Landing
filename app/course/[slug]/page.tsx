@@ -6,6 +6,7 @@ import {
   fetchProgramCohorts,
   transformApiCohort,
   extractPractitioners,
+  extractPractitionersFromProgram,
   extractProgramOverview,
   extractSkills,
   extractCurriculum,
@@ -130,10 +131,15 @@ export default async function CoursePage({
       ? apiCohorts.map((c, i) => transformApiCohort(c, i))
       : course.cohorts;
 
-  // ── Practitioners ─────────────────────────────────────────────────────────────
-  const apiPractitioners = extractPractitioners(apiCohorts);
+  // ── Practitioners — program.partners.practitioners[] takes priority ───────────
+  const programPractitioners = apiProgram ? extractPractitionersFromProgram(apiProgram) : null;
+  const cohortPractitioners = extractPractitioners(apiCohorts);
   const practitioners =
-    apiPractitioners.length > 0 ? apiPractitioners : course.practitioners;
+    programPractitioners?.length
+      ? programPractitioners
+      : cohortPractitioners.length
+      ? cohortPractitioners
+      : course.practitioners;
 
   // Program ID for the checkout entity_id (passed via URL to the checkout page)
   const programId = apiProgram?.id ?? null;

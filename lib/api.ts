@@ -160,6 +160,19 @@ interface ApiIncludesSummaryField {
   materials?: string[];
 }
 
+interface ApiPractitionerItem {
+  name: string;
+  title?: string;
+  expertise?: string;
+  description?: string;
+  footnote?: string;
+  photo?: string;
+}
+
+interface ApiPartnersField {
+  practitioners?: ApiPractitionerItem[];
+}
+
 export interface ApiProgram {
   id: number;
   slug: string;
@@ -186,6 +199,7 @@ export interface ApiProgram {
   includes_summary?: ApiIncludesSummaryField;
   images?: { main_program_image?: string };
   sample_certificate_url?: string;
+  partners?: ApiPartnersField;
 }
 
 // ─── Fetch Helpers ─────────────────────────────────────────────────────────────
@@ -204,6 +218,7 @@ const JSON_PROGRAM_FIELDS = [
   "faqs",
   "includes_summary",
   "images",
+  "partners",
 ] as const;
 
 function safeParseJson(str: unknown): unknown {
@@ -451,6 +466,36 @@ export function extractPricingFeatures(program: ApiProgram): string[] | null {
   const s = program.includes_summary;
   if (!s || !s.items?.length) return null;
   return s.items;
+}
+
+// ─── Practitioner photo fallbacks (filename → local public path) ───────────────
+const PRACTITIONER_PHOTO_MAP: Record<string, string> = {
+  "Pract1.webp": "/images/Pract 1.png",
+  "Pract2.webp": "/images/Pract 2.png",
+  "Pract3.webp": "/images/Pract 3.png",
+};
+
+function resolvePractitionerPhoto(photo: string | undefined): string {
+  if (!photo) return "/images/Pract 1.png";
+  if (photo.startsWith("http")) return photo;
+  return PRACTITIONER_PHOTO_MAP[photo] ?? "/images/Pract 1.png";
+}
+
+/** practitioners from program.partners.practitioners[] */
+export function extractPractitionersFromProgram(
+  program: ApiProgram
+): CoursePractitioner[] | null {
+  const list = program.partners?.practitioners;
+  if (!list?.length) return null;
+  return list.map((p) => ({
+    role: p.title ?? "Instructor",
+    name: p.name,
+    experience: p.footnote ?? "",
+    bio: p.description ?? "",
+    expertise: p.expertise ?? "",
+    sessions: p.footnote ?? "",
+    photo: resolvePractitionerPhoto(p.photo),
+  }));
 }
 
 // ─── Cohort / Instructor transformers ─────────────────────────────────────────
