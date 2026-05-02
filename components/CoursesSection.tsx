@@ -82,7 +82,7 @@ const courses = [
     priceSale: "₦50,000",
     priceUSD: "$64.94",
     priceSaleUSD: "$36.08",
-    image: "/images/Product Design.png",
+    image: "/images/Product design.png",
   }
 ];
 
