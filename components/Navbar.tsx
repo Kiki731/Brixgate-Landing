@@ -59,17 +59,18 @@ export default function Navbar() {
 
         {/* CTA */}
         <div className="hidden md:flex items-center gap-4">
-          {/* <a
-            href="#"
-            className="text-sm font-medium text-[#fdfbf6] hover:text-white/80 transition-colors"
-          >
-            Sign in
-          </a> */}
-            <a
+          <a
             href="tel:+2347088093620"
             className="px-3 py-2 text-sm text-white/80 hover:text-white transition-colors"
           >
             Phone: +234 7088093620
+          </a>
+
+          <a
+            href="https://portal.brixgate.com"
+            className="text-sm font-semibold text-white/80 hover:text-white border border-white/30 hover:border-white/60 px-4 py-2.5 rounded-md transition-colors"
+          >
+            Log In
           </a>
 
           <a
@@ -112,9 +113,12 @@ export default function Navbar() {
             Our Courses
           </a>
           <div className="flex gap-3 pt-2">
-            {/* <a href="#" className="text-sm font-medium">
-              Sign in
-            </a> */}
+            <a
+              href="https://portal.brixgate.com"
+              className="text-sm font-semibold text-white/80 border border-white/30 px-4 py-2 rounded-md"
+            >
+              Log In
+            </a>
             <a
               href="#"
               onClick={(e) => { e.preventDefault(); scrollToForm(); setMobileOpen(false); }}

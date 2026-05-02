@@ -15,13 +15,19 @@ export default function CourseNavbar() {
         </a>
 
         {/* Desktop: phone + CTA */}
-        <div className="hidden md:flex items-center gap-6">
+        <div className="hidden md:flex items-center gap-4">
           <a
             href="tel:+2347000000000"
             className="flex items-center gap-2 text-sm font-medium text-white/80 hover:text-white transition-colors"
           >
             <Phone className="w-4 h-4" />
             Toll-Free: 0700-000-0000
+          </a>
+          <a
+            href="https://portal.brixgate.com"
+            className="text-sm font-semibold text-white/80 hover:text-white border border-white/30 hover:border-white/60 px-4 py-2.5 rounded-md transition-colors"
+          >
+            Log In
           </a>
           <a
             href="#enroll"
@@ -52,6 +58,12 @@ export default function CourseNavbar() {
             Toll-Free: 0700-000-0000
           </a>
           <div className="flex gap-3 pt-2">
+            <a
+              href="https://portal.brixgate.com"
+              className="text-sm font-semibold text-white/80 border border-white/30 px-4 py-2 rounded-md"
+            >
+              Log In
+            </a>
             <a
               href="#enroll"
               onClick={() => setMobileOpen(false)}
