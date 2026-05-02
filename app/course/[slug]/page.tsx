@@ -166,7 +166,7 @@ export default async function CoursePage({
 
       <ToolsUsed tools={tools} />
 
-      <PricingSection />
+      <PricingSection checkoutHref={`/checkout?program=${slug}${programId ? `&id=${programId}` : ""}`} />
 
       <HowToApply
         steps={howToApplySteps}

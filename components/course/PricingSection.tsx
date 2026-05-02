@@ -33,7 +33,7 @@ function CircleCheck() {
   );
 }
 
-export default function PricingSection() {
+export default function PricingSection({ checkoutHref }: { checkoutHref?: string }) {
   const scrollToEnroll = () => {
     const el = document.getElementById("enroll");
     if (el) el.scrollIntoView({ behavior: "smooth" });
@@ -171,17 +171,31 @@ export default function PricingSection() {
                 </div>
 
                 {/* Enroll Now button */}
-                <button
-                  onClick={scrollToEnroll}
-                  className="w-full py-4 rounded-lg text-white font-semibold text-[15px] mt-2 hover:opacity-95 transition-opacity"
-                  style={{
-                    fontFamily: "var(--font-dm-sans)",
-                    background: "linear-gradient(to right, #b01818 0%, #d51420 20%, #d51420 100%)",
-                    boxShadow: "inset 3px 0 10px rgba(0,0,0,0.18)",
-                  }}
-                >
-                  Enroll Now
-                </button>
+                {checkoutHref ? (
+                  <a
+                    href={checkoutHref}
+                    className="w-full py-4 rounded-lg text-white font-semibold text-[15px] mt-2 hover:opacity-95 transition-opacity flex items-center justify-center"
+                    style={{
+                      fontFamily: "var(--font-dm-sans)",
+                      background: "linear-gradient(to right, #b01818 0%, #d51420 20%, #d51420 100%)",
+                      boxShadow: "inset 3px 0 10px rgba(0,0,0,0.18)",
+                    }}
+                  >
+                    Enroll Now
+                  </a>
+                ) : (
+                  <button
+                    onClick={scrollToEnroll}
+                    className="w-full py-4 rounded-lg text-white font-semibold text-[15px] mt-2 hover:opacity-95 transition-opacity"
+                    style={{
+                      fontFamily: "var(--font-dm-sans)",
+                      background: "linear-gradient(to right, #b01818 0%, #d51420 20%, #d51420 100%)",
+                      boxShadow: "inset 3px 0 10px rgba(0,0,0,0.18)",
+                    }}
+                  >
+                    Enroll Now
+                  </button>
+                )}
               </div>
 
               {/* Footer ribbon */}
