@@ -1135,6 +1135,42 @@ export const courses: CourseData[] = [
       },
     ],
   },
+
+  // ─────────────────────────────────────────────────────────────────────────────
+  {
+    slug: "ai-in-software-engineering",
+    meta: {
+      title: "AI in Software Engineering — BrixGate",
+      description:
+        "A hands-on intensive for software engineers. Use AI to write better code faster, automate testing, and ship production-ready software with AI-augmented workflows.",
+    },
+    hero: {
+      category: "Artificial Intelligence",
+      title: "AI in Software Engineering",
+      description:
+        "A hands-on intensive for software engineers. Use AI to write better code faster, automate testing, and ship production-ready software with AI-augmented workflows.",
+      heroImage: "/images/photo_5960941581084855491_y 1.png",
+      stats: [
+        { label: "Application Closes", value: "TBA" },
+        { label: "Cohort Start Date", value: "TBA" },
+        { label: "Program Duration", value: "3 weeks" },
+        { label: "Learning Format", value: "Live, Online classes" },
+      ],
+    },
+    programOverview: { description: "", items: [] },
+    skills: [],
+    curriculum: { title: "Program Curriculum", description: "", items: [] },
+    tools: [],
+    portfolioProjects: [],
+    testimonials: [],
+    howToApply: { steps: [], professions: [], eligibility: [] },
+    faqs: [],
+    cohorts: [],
+    practitioners: [],
+    tickerTopics: [],
+    admission: { deadline: "TBA", subtitle: "" },
+    contact: { phone: "+234 7088093620", email: "we@brixgate.com" },
+  },
 ];
 
 // ─── All program links (used by OtherPrograms section) ────────────────────────
