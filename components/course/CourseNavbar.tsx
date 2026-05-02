@@ -17,11 +17,11 @@ export default function CourseNavbar() {
         {/* Desktop: phone + CTA */}
         <div className="hidden md:flex items-center gap-4">
           <a
-            href="tel:+2347000000000"
+            href="tel:+2347088093620"
             className="flex items-center gap-2 text-sm font-medium text-white/80 hover:text-white transition-colors"
           >
             <Phone className="w-4 h-4" />
-            Toll-Free: 0700-000-0000
+            Phone: +234 7088093620
           </a>
           <a
             href="https://portal.brixgate.com"
@@ -30,7 +30,7 @@ export default function CourseNavbar() {
             Log In
           </a>
           <a
-            href="#enroll"
+            href="mailto:we@brixgate.com"
             className="flex items-center gap-2 bg-[#d51420] hover:bg-[#b8111e] transition-colors text-white text-sm font-semibold px-4 py-2.5 rounded-md"
           >
             Talk to an Advisor
@@ -51,11 +51,11 @@ export default function CourseNavbar() {
       {mobileOpen && (
         <div className="md:hidden bg-[#172435] border-t border-white/10 px-6 py-4 flex flex-col gap-3">
           <a
-            href="tel:+2347000000000"
+            href="tel:+2347088093620"
             className="flex items-center gap-2 text-sm font-medium py-2 border-b border-white/10"
           >
             <Phone className="w-4 h-4" />
-            Toll-Free: 0700-000-0000
+            Phone: +234 7088093620
           </a>
           <div className="flex gap-3 pt-2">
             <a
@@ -65,8 +65,7 @@ export default function CourseNavbar() {
               Log In
             </a>
             <a
-              href="#enroll"
-              onClick={() => setMobileOpen(false)}
+              href="mailto:we@brixgate.com"
               className="flex items-center gap-2 bg-[#d51420] text-white text-sm font-semibold px-4 py-2 rounded-md"
             >
               Talk to an Advisor
