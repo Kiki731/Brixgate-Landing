@@ -1171,6 +1171,42 @@ export const courses: CourseData[] = [
     admission: { deadline: "TBA", subtitle: "" },
     contact: { phone: "+234 7088093620", email: "we@brixgate.com" },
   },
+
+  // ─────────────────────────────────────────────────────────────────────────────
+  {
+    slug: "ai-in-product-design",
+    meta: {
+      title: "AI in Product Design — BrixGate",
+      description:
+        "A hands-on intensive for product designers. Use AI to accelerate your design process, generate ideas faster, and build user-centred products with AI-augmented workflows.",
+    },
+    hero: {
+      category: "Artificial Intelligence",
+      title: "AI in Product Design",
+      description:
+        "A hands-on intensive for product designers. Use AI to accelerate your design process, generate ideas faster, and build user-centred products with AI-augmented workflows.",
+      heroImage: "/images/product-design.png",
+      stats: [
+        { label: "Application Closes", value: "TBA" },
+        { label: "Cohort Start Date", value: "TBA" },
+        { label: "Program Duration", value: "3 weeks" },
+        { label: "Learning Format", value: "Live, Online classes" },
+      ],
+    },
+    programOverview: { description: "", items: [] },
+    skills: [],
+    curriculum: { title: "Program Curriculum", description: "", items: [] },
+    tools: [],
+    portfolioProjects: [],
+    testimonials: [],
+    howToApply: { steps: [], professions: [], eligibility: [] },
+    faqs: [],
+    cohorts: [],
+    practitioners: [],
+    tickerTopics: [],
+    admission: { deadline: "TBA", subtitle: "" },
+    contact: { phone: "+234 7088093620", email: "we@brixgate.com" },
+  },
 ];
 
 // ─── All program links (used by OtherPrograms section) ────────────────────────
