@@ -30,7 +30,7 @@ export default function Hero() {
 
           {/* Main heading */}
           <h1 className="font-[family-name:var(--font-dm-sans)] font-medium text-[42px] lg:text-[54px] leading-none text-[#101010] mb-6 anim-fade-up delay-200">
-            Don&apos;t Just Watch AI Change Your Field. Lead It.
+            Don&apos;t Just Watch AI Change the Game. Lead the Change.
           </h1>
 
           {/* Subtitle */}
